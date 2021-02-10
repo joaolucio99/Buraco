@@ -1,0 +1,13 @@
+.button_menu{
+    background-image: none;
+    background-color: #73b32a;
+    border-radius: 50px;
+    border-color: white;
+    border-width: 2;
+    font-weight: 500;
+    color:white;
+}
+
+.button_menu:hover{
+    background-color: #5b8b24;
+}

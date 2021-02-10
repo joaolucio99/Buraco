@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "buttons.h": "c",
+        "tools.h": "c",
+        "buttons_menu.h": "c"
+    }
+}

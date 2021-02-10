@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="main_window">
+    <property name="width_request">700</property>
+    <property name="height_request">517</property>
+    <property name="can_focus">False</property>
+    <property name="double_buffered">False</property>
+    <property name="resizable">False</property>
+    <property name="default_width">700</property>
+    <property name="default_height">517</property>
+    <property name="icon">../assets/suit.png</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkStack" id="all_pages">
+        <property name="width_request">700</property>
+        <property name="height_request">517</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkLayout" id="init_page">
+            <property name="width_request">700</property>
+            <property name="height_request">517</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="width">700</property>
+            <property name="height">517</property>
+            <child>
+              <object class="GtkImage" id="bck_img">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../assets/buraco.png</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButtonBox" id="button_box">
+                <property name="width_request">138</property>
+                <property name="height_request">162</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">15</property>
+                <property name="layout_style">spread</property>
+                <child>
+                  <object class="GtkButton" id="button_init">
+                    <property name="label" translatable="yes">INICIAR</property>
+                    <property name="width_request">130</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_button_init_clicked" object="all_pages" swapped="no"/>
+                    <style>
+                      <class name="button_menu"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button_rules">
+                    <property name="label" translatable="yes">REGRAS</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <style>
+                      <class name="button_menu"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button_exit">
+                    <property name="label" translatable="yes">SAIR</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_button_exit_clicked" swapped="no"/>
+                    <style>
+                      <class name="button_menu"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="x">281</property>
+                <property name="y">198</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">init_page</property>
+            <property name="title" translatable="yes">init_page</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="players_page">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="width">700</property>
+            <property name="height">517</property>
+          </object>
+          <packing>
+            <property name="name">players_page</property>
+            <property name="title" translatable="yes">players_page</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="rules_page">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="width">700</property>
+            <property name="height">517</property>
+          </object>
+          <packing>
+            <property name="name">rules_page</property>
+            <property name="title" translatable="yes">rules_page</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="game_page">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="width">1366</property>
+            <property name="height">728</property>
+          </object>
+          <packing>
+            <property name="name">game_page</property>
+            <property name="title" translatable="yes">game_page</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="score_page">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="width">1366</property>
+            <property name="height">728</property>
+          </object>
+          <packing>
+            <property name="name">score_page</property>
+            <property name="title" translatable="yes">score_page</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
