@@ -1,13 +1,59 @@
+/* menu page*/
+
 .button_menu{
     background-image: none;
     background-color: #73b32a;
     border-radius: 50px;
     border-color: white;
-    border-width: 2;
+    border-width: 2px;
     font-weight: 500;
+    font-size: 16px;
     color:white;
 }
 
 .button_menu:hover{
     background-color: #5b8b24;
+}
+
+/* player page */
+.background_box{
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.3)
+}
+
+.user_icon{
+    border-radius: 80px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+}
+
+.font_player{
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.label_player{
+    border-radius: 50px;
+    font-size: 12px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+}
+
+.font_title_label{
+    font-size: 15px;
+}
+
+.font_title_switch{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.switch_player{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color:#ff6554;
+    border-color: black;
+}
+
+.switch_player:checked{
+    background-color: #5d9c43;
 }
