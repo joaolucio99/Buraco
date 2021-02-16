@@ -1,5 +1,5 @@
 #include "lib/menu.h"
 
-int main(){
+int main(){ //teste
     menu();
 }
