@@ -16,6 +16,7 @@
 }
 
 /* player page */
+
 .background_box{
     background-color: white;
     border-radius: 50px;
@@ -48,6 +49,25 @@
     font-weight: 500;
 }
 
+.start_button{
+    background-image: none;
+    background: linear-gradient(45deg, rgba(115,179,42,1) 0%, rgba(31,108,3,1) 100%);
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    
+    border: 2px solid black;
+    border-radius: 100%;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5)
+
+}
+
+.start_button:hover{
+    color: white;
+    border: 2px solid white;
+    background: linear-gradient(145deg, rgba(115,179,42,1) 0%, rgba(3,202,226,1) 100%);
+}
+
 .switch_player{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color:#ff6554;
@@ -56,4 +76,10 @@
 
 .switch_player:checked{
     background-color: #5d9c43;
+}
+
+/* dialog name */
+
+.dg_name_label{
+    font-weight: 500;
 }

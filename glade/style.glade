@@ -2,6 +2,255 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkDialog" id="dialog_cmpname">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">AVISO</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-always</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="dg_cmpname_close">
+                <property name="label" translatable="yes">OK</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_dg_cmpname_close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">500</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed">
+            <property name="width_request">400</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-close</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="x">28</property>
+                <property name="y">18</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="dg_cmpname_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">VOCÊ NÃO PODE INICIAR COM O NOME
+DOS DOIS JOGADORES IGUAIS</property>
+                <style>
+                  <class name="dg_name_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">85</property>
+                <property name="y">25</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkDialog" id="dialog_name">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">AVISO</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-always</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="dg_name_close">
+                <property name="label" translatable="yes">OK</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_dg_name_close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">500</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed">
+            <property name="width_request">400</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-close</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="x">28</property>
+                <property name="y">18</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="dg_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">VOCÊ NÃO PODE SELECIONAR PRONTO 
+SEM UM NOME DEFINIDO</property>
+                <style>
+                  <class name="dg_name_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">85</property>
+                <property name="y">25</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkDialog" id="dialog_ready">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">AVISO</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-always</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="dg_ready_close">
+                <property name="label" translatable="yes">OK</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_dg_ready_close_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">500</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed">
+            <property name="width_request">400</property>
+            <property name="height_request">32</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-close</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="x">28</property>
+                <property name="y">18</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="dg_ready_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">VOCÊ NÃO PODE INICIAR SEM QUE OS 
+DOIS JOGADORES ESTEJAM PRONTOS</property>
+                <style>
+                  <class name="dg_name_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">85</property>
+                <property name="y">25</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="width_request">1366</property>
     <property name="height_request">728</property>
@@ -132,7 +381,7 @@
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLayout" id="user_box1">
+                  <object class="GtkLayout" id="user1_box">
                     <property name="name">box</property>
                     <property name="width_request">400</property>
                     <property name="height_request">450</property>
@@ -207,7 +456,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="player1_label1">
+                      <object class="GtkEntry" id="player1_input_name">
                         <property name="width_request">220</property>
                         <property name="height_request">30</property>
                         <property name="visible">True</property>
@@ -215,6 +464,7 @@
                         <property name="double_buffered">False</property>
                         <property name="max_length">16</property>
                         <property name="placeholder_text" translatable="yes">Maximo 16 caracteres</property>
+                        <signal name="changed" handler="on_player1_input_name_changed" swapped="no"/>
                         <style>
                           <class name="label_player"/>
                         </style>
@@ -225,7 +475,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="title_label1">
+                      <object class="GtkLabel" id="title_input1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Nickname:</property>
@@ -236,19 +486,6 @@
                       <packing>
                         <property name="x">90</property>
                         <property name="y">248</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSwitch" id="switch_button1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <style>
-                          <class name="switch_player"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="x">135</property>
-                        <property name="y">340</property>
                       </packing>
                     </child>
                     <child>
@@ -265,6 +502,20 @@
                         <property name="y">344</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkSwitch" id="switch_button1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <signal name="state-set" handler="on_switch_button1_state_set" swapped="no"/>
+                        <style>
+                          <class name="switch_player"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="x">135</property>
+                        <property name="y">340</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -274,8 +525,8 @@
                 </child>
               </object>
               <packing>
-                <property name="x">133</property>
-                <property name="y">80</property>
+                <property name="x">128</property>
+                <property name="y">125</property>
               </packing>
             </child>
             <child>
@@ -286,7 +537,7 @@
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLayout" id="user_box2">
+                  <object class="GtkLayout" id="user2_box">
                     <property name="name">box</property>
                     <property name="width_request">400</property>
                     <property name="height_request">450</property>
@@ -361,7 +612,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="player1_label2">
+                      <object class="GtkEntry" id="player2_input_name">
                         <property name="width_request">220</property>
                         <property name="height_request">30</property>
                         <property name="visible">True</property>
@@ -369,6 +620,7 @@
                         <property name="double_buffered">False</property>
                         <property name="max_length">16</property>
                         <property name="placeholder_text" translatable="yes">Maximo 16 caracteres</property>
+                        <signal name="changed" handler="on_player2_input_name_changed" swapped="no"/>
                         <style>
                           <class name="label_player"/>
                         </style>
@@ -379,7 +631,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="title_label2">
+                      <object class="GtkLabel" id="title_input2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Nickname:</property>
@@ -396,6 +648,7 @@
                       <object class="GtkSwitch" id="switch_button2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <signal name="state-set" handler="on_switch_button2_state_set" swapped="no"/>
                         <style>
                           <class name="switch_player"/>
                         </style>
@@ -428,8 +681,26 @@
                 </child>
               </object>
               <packing>
-                <property name="x">770</property>
-                <property name="y">80</property>
+                <property name="x">833</property>
+                <property name="y">125</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="start">
+                <property name="label" translatable="yes">JOGAR</property>
+                <property name="width_request">125</property>
+                <property name="height_request">125</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_start_clicked" swapped="no"/>
+                <style>
+                  <class name="start_button"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">620</property>
+                <property name="y">290</property>
               </packing>
             </child>
             <style>
