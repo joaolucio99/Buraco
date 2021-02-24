@@ -41,7 +41,7 @@
             }
     }
 
-    void on_start_clicked(){
+    void on_start_clicked(){        //inicar o jogo
         if( p_ready[0] != 1 || p_ready[1] != 1 ){       //verificando se 2 jogadores estão prontos
             GtkWidget           *ready_dialog;
             ready_dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog_ready" ));
@@ -52,7 +52,9 @@
                 cmpname_dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog_cmpname" ));
                 gtk_widget_show( cmpname_dialog );
             } else {
-                get_players_data( player, name_player1, name_player2 );        //gerando informações dos players
+                get_players_data( name_player1, name_player2 );        //gerando informações dos players
+                create_player_log();
+                generate_deck();
                 gtk_main_quit();
             }
         }

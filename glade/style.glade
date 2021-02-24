@@ -584,7 +584,7 @@ DOIS JOGADORES ESTEJAM PRONTOS</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="margin_top">50</property>
-                            <property name="pixbuf">../assets/user.png</property>
+                            <property name="pixbuf">../assets/user2.png</property>
                             <style>
                               <class name="user_icon"/>
                             </style>

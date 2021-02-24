@@ -3,6 +3,7 @@
         "buttons.h": "c",
         "tools.h": "c",
         "buttons_menu.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "string.h": "c"
     }
 }

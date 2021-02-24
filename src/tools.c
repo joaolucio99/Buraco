@@ -7,6 +7,31 @@
         gtk_main_quit();
     }
 
+    void get_date(char *s){
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t);
+        char year[10],month[10],day[10],Hours[10],Minutes[10],Seconds[10];
+            sprintf(year, "%i", tm.tm_year+1900);
+            sprintf(month, "%i", tm.tm_mon+1);
+            sprintf(day, "%i", tm.tm_mday);
+            sprintf(Hours, "%i", tm.tm_hour);
+            sprintf(Minutes, "%i", tm.tm_min);
+            sprintf(Seconds, "%i", tm.tm_sec);
+            strcat(day,"/");
+            strcat(day,month);
+            strcat(day,"/");
+            strcat(day,year);
+        char full_date[28];
+            strcpy(full_date,day);
+            strcat(full_date," - ");
+            strcat(full_date,Hours);
+            strcat(full_date,":");
+            strcat(full_date,Minutes);
+            strcat(full_date,":");
+            strcat(full_date,Seconds);
+            strcpy(s,full_date);
+    }
+
     void load_css(){
         GtkCssProvider *provider;  
         GdkDisplay *display;

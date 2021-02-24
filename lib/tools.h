@@ -2,15 +2,19 @@
 #define TOOLS
 #include <stdio.h>
 #include <stdlib.h>
-#include <gtk/gtk.h>
 #include <string.h>
+#include <time.h>
+#include <gtk/gtk.h>
 #include "structs.h"
 #include "players.h"
+#include "deck.h"
 
     extern GtkBuilder      *builder;        
     extern GtkWidget       *window;
 
     void on_window_main_destroy();
+
+    void get_date();
 
     void load_css();
 
