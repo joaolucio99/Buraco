@@ -693,7 +693,7 @@ DOIS JOGADORES ESTEJAM PRONTOS</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_start_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_start_clicked" object="all_pages" swapped="no"/>
                 <style>
                   <class name="start_button"/>
                 </style>
@@ -740,6 +740,167 @@ DOIS JOGADORES ESTEJAM PRONTOS</property>
                 <property name="can_focus">False</property>
                 <property name="pixbuf">../assets/game_screen.png</property>
               </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="player_shift">
+                <property name="width_request">180</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkImage" id="player_active_icon">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">10</property>
+                    <property name="margin_right">10</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="player_active_name">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <style>
+                      <class name="player_info_text"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="background_player_info"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">1180</property>
+                <property name="y">10</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="buy_card">
+                <property name="label" translatable="yes">COMPRAR CARTA</property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <style>
+                  <class name="button_normal"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">1225</property>
+                <property name="y">60</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="pass_turn">
+                <property name="label" translatable="yes">PASSAR A VEZ</property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_pass_turn_clicked" swapped="no"/>
+                <style>
+                  <class name="button_with_warning"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">1244</property>
+                <property name="y">110</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="see_trash">
+                <property name="label" translatable="yes">VER LIXO</property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <style>
+                  <class name="button_normal"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">60</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="buy_dead">
+                <property name="label" translatable="yes">COMPRAR MORTO</property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <style>
+                  <class name="button_with_warning"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">10</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="win_game">
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_win_game_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">9</property>
+                        <property name="margin_right">5</property>
+                        <property name="stock">gtk-about</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">BATER</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <style>
+                  <class name="button_win"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">110</property>
+              </packing>
             </child>
           </object>
           <packing>

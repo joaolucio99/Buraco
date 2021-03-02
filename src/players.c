@@ -10,6 +10,8 @@
                 player[i].ncard = 0;
                 player[i].score = 0;
                 player[i].hand = new_list();
+                    if( i == 0 ) strcpy( player[i].icon, "./assets/user_small.png" );
+                    else strcpy( player[i].icon, "./assets/user2_small.png" );
             }
     }
 

@@ -1,6 +1,7 @@
 #ifndef START_GAME
 #define START_GAME
 #include "tools.h"
+#include "game_started.h"
 
     extern char name_player1[16];
     extern char name_player2[16];

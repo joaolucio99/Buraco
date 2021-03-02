@@ -22,7 +22,7 @@
 
     typedef struct players{
         int score, ncard;
-        char name[16];
+        char name[16],icon[30];
         list *hand;
     }players;  
 

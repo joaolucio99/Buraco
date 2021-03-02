@@ -5,6 +5,7 @@
         "buttons_menu.h": "c",
         "math.h": "c",
         "string.h": "c",
-        "players.h": "c"
+        "players.h": "c",
+        "game_started_tools.h": "c"
     }
 }

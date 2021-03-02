@@ -1,4 +1,63 @@
-/* menu page*/
+/*      game page       */
+
+/*backgrounds*/
+
+.background_player_info{
+    background-color: white;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+}
+
+/*texts*/
+
+.player_info_text{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/*buttons*/
+
+.button_normal{
+    background-image: none;
+    background-color: white;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 12px;
+}
+.button_normal:hover{
+    color: white;
+    background-color: #5b8b24;
+}
+
+.button_with_warning{
+    background-image: none;
+    background-color: white;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 12px;
+}
+.button_with_warning:hover{
+    color: white;
+    background-color: #c22708;
+}
+
+.button_win{
+    background-image: none;
+    background-color: white;
+    box-shadow: inset 0 0 1em rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 12px;
+}
+.button_win:hover{
+    color: white;
+    background-color: #017cc2;
+}
+/*      menu page       */
+
+/*buttons*/
 
 .button_menu{
     background-image: none;
@@ -15,7 +74,10 @@
     background-color: #5b8b24;
 }
 
-/* player page */
+
+/*      player page        */
+
+/*backgrounds*/
 
 .background_box{
     background-color: white;
@@ -27,6 +89,8 @@
     border-radius: 80px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
 }
+
+/*texts*/
 
 .font_player{
     font-size: 26px;
@@ -49,6 +113,8 @@
     font-weight: 500;
 }
 
+/*buttons*/
+
 .start_button{
     background-image: none;
     background: linear-gradient(45deg, rgba(115,179,42,1) 0%, rgba(31,108,3,1) 100%);
@@ -68,6 +134,8 @@
     background: linear-gradient(145deg, rgba(115,179,42,1) 0%, rgba(3,202,226,1) 100%);
 }
 
+/*switchs*/
+
 .switch_player{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color:#ff6554;
@@ -78,7 +146,10 @@
     background-color: #5d9c43;
 }
 
-/* dialog name */
+
+/*      dialog's        */
+
+/*text*/
 
 .dg_name_label{
     font-weight: 500;
