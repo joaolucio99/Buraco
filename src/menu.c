@@ -1,6 +1,6 @@
 #include "../lib/menu.h"
 
-    int menu(int argc, char *argv[]){
+    int menu( int argc, char *argv[] ){
 
             gtk_init( &argc , &argv);
 

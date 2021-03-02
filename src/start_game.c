@@ -26,10 +26,10 @@
         GtkWidget           *name_dialog;
         GtkWidget           *input_player;
         name_dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog_name" ));    //selecionando o widget do glade para realizar demais tarefas
-        input_player = GTK_WIDGET( gtk_builder_get_object( builder, input_name));
-            gtk_widget_unset_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE);      //libeirando a box para edição
+        input_player = GTK_WIDGET( gtk_builder_get_object( builder, input_name ));
+            gtk_widget_unset_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE );      //libeirando a box para edição
         gboolean act_state = gtk_switch_get_active( state );      //pegando informação switch button
-            if(act_state){      //verificando estado botao switch
+            if( act_state ){      //verificando estado botao switch
                 if( strlen( name_player ) == 0 ){
                     gtk_switch_set_active( state , FALSE );     //alterando estado switch button
                     gtk_widget_show( name_dialog );       //mostrando erro não ter digitado nome
@@ -55,6 +55,9 @@
                 get_players_data( name_player1, name_player2 );        //gerando informações dos players
                 create_player_log();
                 generate_deck();
+                shuffle();
+                set_first_player();
+                deal_cards();
                 gtk_main_quit();
             }
         }

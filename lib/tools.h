@@ -5,6 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <gtk/gtk.h>
+#include "list.h"
 #include "structs.h"
 #include "players.h"
 #include "deck.h"

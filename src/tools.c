@@ -7,7 +7,7 @@
         gtk_main_quit();
     }
 
-    void get_date(char *s){
+    void get_date( char *s ){
         time_t t = time(NULL);
         struct tm tm = *localtime(&t);
         char year[10],month[10],day[10],Hours[10],Minutes[10],Seconds[10];
