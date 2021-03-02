@@ -6,6 +6,7 @@
         "math.h": "c",
         "string.h": "c",
         "players.h": "c",
-        "game_started_tools.h": "c"
+        "game_started_tools.h": "c",
+        "typeinfo": "c"
     }
 }
