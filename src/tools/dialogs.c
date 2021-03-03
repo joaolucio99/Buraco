@@ -1,4 +1,4 @@
-#include "../lib/dialogs.h"
+#include "../../lib/tools/dialogs.h"
 
     void on_dg_close_clicked(){        //botão de fechar o dialog de nome jogador
         GtkWidget           *dialog;       

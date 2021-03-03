@@ -8,6 +8,7 @@
         "players.h": "c",
         "game_started_tools.h": "c",
         "typeinfo": "c",
-        "gdk-pixbuf.h": "c"
+        "gdk-pixbuf.h": "c",
+        "game_start.h": "c"
     }
 }

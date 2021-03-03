@@ -1,4 +1,4 @@
-#include "../lib/tools.h"
+#include "../../lib/tools/general_tools.h"
 
     GtkBuilder      *builder;
     GtkWidget       *window;

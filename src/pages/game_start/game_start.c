@@ -1,4 +1,4 @@
-#include "../lib/start_game.h"
+#include "../../../lib/pages/game_start/game_start.h"
 
     char name_player1[16];
     char name_player2[16];

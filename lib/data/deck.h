@@ -1,7 +1,7 @@
 #ifndef DECK
 #define DECK
-#include "tools.h"
-#include "structs.h"
+#include "../tools/general_tools.h"
+#include "../tools/structs.h"
 
     extern cards deck[104];
     extern cards dead1[11];

@@ -1,6 +1,6 @@
 #ifndef GAME_STARTED_TOOLS
 #define GAME_STARTED_TOOLS
-#include "tools.h"
+#include "../../tools/general_tools.h"
 #include "game_started.h"
 
     extern int active;

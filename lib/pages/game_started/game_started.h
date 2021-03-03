@@ -1,7 +1,7 @@
 #ifndef GAME_STARTED
 #define GAME_STARTED
+#include "../../tools/general_tools.h"
 #include "tools.h"
-#include "game_started_tools.h"
 
     void turn();
 

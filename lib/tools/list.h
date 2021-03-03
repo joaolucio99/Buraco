@@ -1,6 +1,6 @@
 #ifndef LIST
 #define LIST
-#include "tools.h"
+#include "general_tools.h"
 #include "structs.h"
 
     list*new_list();

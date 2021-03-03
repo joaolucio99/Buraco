@@ -1,7 +1,7 @@
-#ifndef START_GAME
-#define START_GAME
-#include "tools.h"
-#include "game_started.h"
+#ifndef GAME_START
+#define GAME_START
+#include "../../tools/general_tools.h"
+#include "../game_started/game_started.h"
 
     extern char name_player1[16];
     extern char name_player2[16];

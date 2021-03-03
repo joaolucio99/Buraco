@@ -1,4 +1,4 @@
-#include "../lib/deck.h"
+#include "../../lib/data/deck.h"
 
     cards deck[104];
     cards dead1[11];

@@ -1,4 +1,4 @@
-#include "../lib/players.h"
+#include "../../lib/data/players.h"
 
     players player[2];
     int first_player[2];

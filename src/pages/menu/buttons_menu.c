@@ -1,4 +1,4 @@
-#include "../lib/buttons_menu.h"
+#include "../../../lib/pages/menu/buttons_menu.h"
 
     void on_button_exit_clicked(){
         gtk_main_quit();

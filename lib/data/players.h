@@ -1,7 +1,7 @@
 #ifndef PLAYERS
 #define PLAYERS
-#include "tools.h"
-#include "structs.h"
+#include "../tools/general_tools.h"
+#include "../tools/structs.h"
 
     extern players player[2];
     extern int first_player[2];

@@ -1,5 +1,5 @@
-#include "../lib/game_started_tools.h"
-
+#include "../../../lib/pages/game_started/tools.h"
+    
     int active;
     int count_round=0;
 
