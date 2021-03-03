@@ -7,6 +7,7 @@
         "string.h": "c",
         "players.h": "c",
         "game_started_tools.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "gdk-pixbuf.h": "c"
     }
 }

@@ -12,6 +12,18 @@
             gtk_label_set_text( label , name );
     }
 
+    void set_current_hand(){
+        GtkBox          *hand;
+        GtkWidget       *image;
+        GdkPixbuf       *pixbuf;
+        pixbuf=gdk_pixbuf_new_from_file("./assets/normal_cards/2_Copas.png",NULL);
+        pixbuf=gdk_pixbuf_scale_simple(pixbuf,114,158,GDK_INTERP_BILINEAR);
+        hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place" )); 
+        image = gtk_image_new_from_pixbuf(pixbuf);
+        gtk_widget_show(image);
+        gtk_box_pack_start(hand , image , FALSE , FALSE , 0);
+    }
+
     void on_pass_turn_clicked(){
         if( active == 0 ) active=1;
         else active=0;

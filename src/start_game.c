@@ -23,19 +23,14 @@
     }
 
     void control_inp_names( GtkSwitch *state, char *input_name, char *name_player, int choice){        //controlar os inputs de nomes
-        GtkWidget           *dialog;
         GtkWidget           *input_player;
-        GtkLabel            *label;
-        label = GTK_LABEL( gtk_builder_get_object( builder, "dg_label" ));
-        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog" ));    //selecionando o widget do glade para realizar demais tarefas
         input_player = GTK_WIDGET( gtk_builder_get_object( builder, input_name ));
             gtk_widget_unset_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE );      //libeirando a box para edição
         gboolean act_state = gtk_switch_get_active( state );      //pegando informação switch button
             if( act_state ){      //verificando estado botao switch
                 if( strlen( name_player ) == 0 ){
                     gtk_switch_set_active( state , FALSE );     //alterando estado switch button
-                    gtk_label_set_text( label , "VOCÊ NÃO PODE SELECIONAR PRONTO\nSEM UM NOME DEFINIDO" );
-                    gtk_widget_show( dialog );       //mostrando erro não ter digitado nome
+                    set_dialog( "VOCÊ NÃO PODE SELECIONAR PRONTO\nSEM UM NOME DEFINIDO" );
                 } else{
                     gtk_switch_set_state( state, TRUE ); 
                     gtk_widget_set_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE , TRUE );        //travando a caixa de edição de nome       
@@ -46,20 +41,10 @@
 
     void on_start_clicked( GtkButton *button, GtkStack *stack ){        //inicar o jogo
         if( p_ready[0] != 1 || p_ready[1] != 1 ){       //verificando se 2 jogadores estão prontos
-            GtkWidget           *dialog;
-            GtkLabel            *label;
-            dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog" ));
-            label = GTK_LABEL( gtk_builder_get_object( builder, "dg_label" ));
-                gtk_label_set_text( label , "VOCÊ NÃO PODE INICIAR SEM QUE OS\nDOIS JOGADORES ESTEJAM PRONTOS" );
-                gtk_widget_show( dialog );
+            set_dialog( "VOCÊ NÃO PODE INICIAR SEM QUE OS\nDOIS JOGADORES ESTEJAM PRONTOS" );
         } else {
             if( strcmp( name_player1, name_player2 ) == 0 ){        //verificando se os nomes não são iguais
-                GtkWidget           *dialog;
-                GtkLabel            *label;
-                dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog" ));
-                label = GTK_LABEL( gtk_builder_get_object( builder, "dg_label" ));
-                    gtk_label_set_text( label , "VOCÊ NÃO PODE INICIAR COM O NOME\nDOS DOIS JOGADORES IGUAIS" );
-                    gtk_widget_show( dialog );
+                set_dialog( "VOCÊ NÃO PODE INICIAR COM O NOME\nDOS DOIS JOGADORES IGUAIS" );
             } else {
                 get_players_data( name_player1, name_player2 );        //gerando informações dos players
                 //create_player_log();

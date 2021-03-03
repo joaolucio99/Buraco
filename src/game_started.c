@@ -6,5 +6,6 @@
                 else active = 1;
             }
         set_current_player( player[active].icon, player[active].name );
+        set_current_hand();
         count_round++;
     }

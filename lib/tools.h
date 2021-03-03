@@ -5,10 +5,12 @@
 #include <string.h>
 #include <time.h>
 #include <gtk/gtk.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include "list.h"
 #include "structs.h"
 #include "players.h"
 #include "deck.h"
+#include "dialogs.h"
 
     extern GtkBuilder      *builder;        
     extern GtkWidget       *window;

@@ -12,4 +12,6 @@
 
     void on_win_game_clicked();
 
+    void set_current_hand();
+
 #endif
