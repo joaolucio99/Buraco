@@ -1,4 +1,4 @@
-#include "../../../lib/pages/game_start/game_start.h"
+#include "../../../lib/pages/players/tools.h"
 
     char name_player1[16];
     char name_player2[16];
@@ -39,21 +39,26 @@
             }
     }
 
-    void on_start_clicked( GtkButton *button, GtkStack *stack ){        //inicar o jogo
-        if( p_ready[0] != 1 || p_ready[1] != 1 ){       //verificando se 2 jogadores estão prontos
-            set_dialog( "VOCÊ NÃO PODE INICIAR SEM QUE OS\nDOIS JOGADORES ESTEJAM PRONTOS" );
-        } else {
-            if( strcmp( name_player1, name_player2 ) == 0 ){        //verificando se os nomes não são iguais
-                set_dialog( "VOCÊ NÃO PODE INICIAR COM O NOME\nDOS DOIS JOGADORES IGUAIS" );
-            } else {
-                get_players_data( name_player1, name_player2 );        //gerando informações dos players
-                //create_player_log();
-                generate_deck();
-                shuffle();
-                set_first_player();
-                deal_cards();
-                gtk_stack_set_visible_child_name ( stack, "game_page" );
-                turn();
-            }
-        }
+    void set_hand( int i ){
+        GtkBox          *hand;
+        GtkWidget       *image;
+        GdkPixbuf       *pixbuf;
+        GtkWidget       *hand_widget;
+        header *aux = player[i].hand->start;
+            if( i == 0 ) hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p2" ));
+            if( i == 0 ) hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p2" ));
+            while( aux != NULL ){
+                char location[50];
+                    strcpy( location, "./assets/normal_cards/" );
+                    strcat( location, aux->l_card.image );
+                pixbuf = gdk_pixbuf_new_from_file( location, NULL );
+                pixbuf = gdk_pixbuf_scale_simple( pixbuf, 114, 158, GDK_INTERP_BILINEAR );
+                image = gtk_image_new_from_pixbuf( pixbuf );
+                    gtk_widget_show(image);
+                    gtk_box_pack_start( hand, image, FALSE, FALSE, 0 );
+                aux = aux->next;
+            }  
+        gtk_widget_hide(hand_widget);
     }

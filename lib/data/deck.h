@@ -7,6 +7,7 @@
     extern cards dead1[11];
     extern cards dead2[11];
     extern int deck_amount_cards;
+    extern list *trash;
 
     void set_deck_infos();
 

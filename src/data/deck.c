@@ -3,6 +3,7 @@
     cards deck[104];
     cards dead1[11];
     cards dead2[11];
+    list *trash;
     int deck_amount_cards=103;
 
     void generate_deck(){

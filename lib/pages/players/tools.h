@@ -1,7 +1,7 @@
-#ifndef GAME_START
-#define GAME_START
+#ifndef GAME_START_TOOLS
+#define GAME_START_TOOLS
 #include "../../tools/general_tools.h"
-#include "../game_started/game_started.h"
+#include "players.h"
 
     extern char name_player1[16];
     extern char name_player2[16];
@@ -17,6 +17,6 @@
 
     void on_player2_input_name_changed();
 
-    void on_start_clicked();
+    void set_hand();
 
 #endif
