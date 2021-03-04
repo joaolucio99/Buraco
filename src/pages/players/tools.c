@@ -40,13 +40,14 @@
     }
 
     void set_hand( int i ){
-        GtkBox          *hand;
+        GtkGrid         *hand;
         GtkWidget       *image;
         GdkPixbuf       *pixbuf;
         GtkWidget       *hand_widget;
         header *aux = player[i].hand->start;
-            if( i == 0 ) hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p1" ));
-            else hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p2" ));
+        int count_grid = 0;
+            if( i == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
             if( i == 0 ) hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
             else hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p2" ));
             while( aux != NULL ){
@@ -56,9 +57,10 @@
                 pixbuf = gdk_pixbuf_new_from_file( location, NULL );
                 pixbuf = gdk_pixbuf_scale_simple( pixbuf, 114, 158, GDK_INTERP_BILINEAR );
                 image = gtk_image_new_from_pixbuf( pixbuf );
-                    gtk_widget_show(image);
-                    gtk_box_pack_start( hand, image, FALSE, FALSE, 0 );
+                    gtk_widget_show( image );
+                    gtk_grid_attach( hand, image, count_grid, 0, 1, 1 );
                 aux = aux->next;
+                count_grid++;
             }  
         gtk_widget_hide(hand_widget);
     }

@@ -1,7 +1,9 @@
 #include "../../../lib/pages/game_started/tools.h"
     
-    int active;
-    int count_round=0;
+    int active;     //ver turno de qual player é
+    int count_round = 0;    //contadora de rounds
+    int count_row2_p1 = 0;      //acessar segunda fileira do grid de cartas
+    int count_row2_p2 = 0;      
 
     void set_current_player( char *location, char *name ){      //mostrar na area do player nome e imagem
         GtkImage           *image;
@@ -27,21 +29,25 @@
     }
 
     void on_buy_card_clicked(){      //clicar no botao de comprar carta
-        GtkImage           *image;
-        GtkWidget          *dialog;
-        image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
-        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
-        char location[50];
-            strcpy( location, "./assets/normal_cards/" );
-            strcat( location, deck[deck_amount_cards].image );
-            gtk_image_set_from_file( image , location );
-            gtk_widget_show( dialog );
+        if( player[active].buy_card == 0 ){
+            GtkImage           *image;
+            GtkWidget          *dialog;
+            image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+            dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+            char location[50];
+                strcpy( location, "./assets/normal_cards/" );
+                strcat( location, deck[deck_amount_cards].image );
+                gtk_image_set_from_file( image , location );
+            player[active].buy_card = 1;
+                gtk_widget_show( dialog );
+        } else set_dialog( "VOCÊ NÃO PODE COMPRAR DUAS CARTAS\nPOR TURNO" );
     }
 
     void on_pass_turn_clicked(){        //clicar no botao passar a vez do jogador
-        if( active == 0 ) active=1;
-        else active=0;
-        turn();
+        player[active].buy_card = 0;
+                if( active == 0 ) active=1;
+                else active=0;
+            turn();
     }
 
     void on_win_game_clicked(){         //clicar no botao de bater
@@ -70,18 +76,74 @@
     }
 
     void add_card_on_hand(){        //mostra visualmente a carta adicionada a mão
-        GtkBox          *hand;
+        int count_cards = list_count_size ( player[active].hand ); 
+        GtkGrid          *hand;
+            if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
+            if( count_cards < 13 ) add_card_size_config( hand, count_cards, 114, 158 );
+            else if( count_cards > 12 && count_cards < 16) add_card_size_config( hand, count_cards, 90, 125 );
+            else if ( count_cards > 15 && count_cards < 20 ) add_card_size_config( hand, count_cards, 70, 96 );
+            else if ( count_cards > 18 ) add_card_size_config( hand, count_cards, 54, 74 );
+    }
+
+    void check_size_render(){       //verifcar para renderizar
+        int count_cards = list_count_size( player[active].hand );
+            if( count_cards < 12 ) size_configs( 114, 158 );
+            else if( count_cards > 11 && count_cards < 15) size_configs( 90, 125 );
+            else if ( count_cards > 14 && count_cards < 19 ) size_configs( 70, 96 );
+            else if ( count_cards > 18 ) size_configs( 54, 74 );
+            
+    }
+
+    void size_configs( int width , int height ){        //tamanho das cartas renderizada na tela
+        int count_grid = 0;
+        int count_grid2 = 0;
+        GtkGrid          *hand;
+        GtkWidget        *hand_widget;
+        header *aux = player[active].hand->start;
+            if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
+            if( active == 0 ) hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p2" ));
+            while( aux != NULL ){
+                GtkWidget       *image;
+                GtkWidget       *new_img;
+                GdkPixbuf       *pixbuf;
+                char location[50];
+                    strcpy( location, "./assets/normal_cards/" );
+                    strcat( location, aux->l_card.image );
+                pixbuf = gdk_pixbuf_new_from_file( location, NULL );
+                pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
+                        if( count_grid > 23 ) image = gtk_grid_get_child_at( hand, count_grid2, 1 );
+                        else image = gtk_grid_get_child_at( hand, count_grid, 0 );
+                    gtk_widget_destroy( image );
+                new_img = gtk_image_new_from_pixbuf( pixbuf );
+                    gtk_widget_show( new_img );
+                        if( count_grid > 23 ) gtk_grid_attach( hand, new_img, count_grid2, 1, 1, 1 );
+                        else gtk_grid_attach( hand, new_img, count_grid, 0, 1, 1 );
+                aux = aux->next;
+                        if( count_grid > 23 ) count_grid2++;
+                        else count_grid++;
+            }
+    }
+
+    void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height){      //verificar tamanho da carta ao adicionar na mao
         GtkWidget       *image;
-        GdkPixbuf       *pixbuf;
-            if( active == 0 ) hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p1" ));
-            else hand = GTK_BOX( gtk_builder_get_object( builder, "cards_place_p2" ));
+        GdkPixbuf      *pixbuf;
         char location[50];
             strcpy( location, "./assets/normal_cards/" );
             strcat( location, deck[deck_amount_cards].image );
-            pixbuf = gdk_pixbuf_new_from_file( location, NULL );
-            pixbuf = gdk_pixbuf_scale_simple( pixbuf, 114, 158, GDK_INTERP_BILINEAR );
-            image = gtk_image_new_from_pixbuf( pixbuf );
+        pixbuf = gdk_pixbuf_new_from_file( location, NULL );
+        pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
+        image = gtk_image_new_from_pixbuf( pixbuf );
                 gtk_widget_show(image);
-                gtk_box_pack_start( hand, image, FALSE, FALSE, 0 );
+                    if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
+                        if( active == 0 ) {     //verificar qual player é
+                            gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     //add na segunda coluna
+                            count_row2_p1++;
+                        } else {
+                            gtk_grid_attach( hand, image, count_row2_p2, 1, 1, 1 );
+                            count_row2_p2++;
+                        }
+                    } else gtk_grid_attach( hand, image, (count_cards-1), 0, 1, 1 );
     }
-

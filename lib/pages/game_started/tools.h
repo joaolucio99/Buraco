@@ -5,6 +5,8 @@
 
     extern int active;
     extern int count_round;
+    extern int count_row2_p1;
+    extern int count_row2_p2;
 
     void set_current_player();
 
@@ -19,5 +21,11 @@
     void on_card_trash_clicked();
 
     void add_card_on_hand();
+
+    void check_size_render();
+
+    void size_configs();
+
+    void add_card_size_config();
 
 #endif

@@ -21,7 +21,7 @@
     }list;
 
     typedef struct players{
-        int score, ncard;
+        int score, ncard, buy_card;
         char name[16],icon[30];
         list *hand;
     }players;  
