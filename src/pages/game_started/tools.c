@@ -30,6 +30,10 @@
 
     void on_buy_card_clicked(){      //clicar no botao de comprar carta
         if( player[active].buy_card == 0 ){
+            if( deck_amount_cards == -1) {
+                set_dialog( "AS CARTAS ACABARAM" );
+                return;
+            }
             GtkImage           *image;
             GtkWidget          *dialog;
             image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
@@ -59,7 +63,9 @@
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
         deck[deck_amount_cards].active = 1;
         deck[deck_amount_cards].active_on.trash = 1;
+                if( list_is_empty( trash ) == 1 ) trash = new_list();
             list_insert( trash, deck[deck_amount_cards] );
+            add_card_trash_view();
         deck_amount_cards--;
             gtk_widget_hide( dialog );
     }
@@ -76,7 +82,7 @@
     }
 
     void add_card_on_hand(){        //mostra visualmente a carta adicionada a mão
-        int count_cards = list_count_size ( player[active].hand ); 
+        int count_cards = list_count_size ( player[active].hand, 0 ); 
         GtkGrid          *hand;
             if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
             else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
@@ -87,7 +93,7 @@
     }
 
     void check_size_render(){       //verifcar para renderizar
-        int count_cards = list_count_size( player[active].hand );
+        int count_cards = list_count_size( player[active].hand, 0 );
             if( count_cards < 12 ) size_configs( 114, 158 );
             else if( count_cards > 11 && count_cards < 15) size_configs( 90, 125 );
             else if ( count_cards > 14 && count_cards < 19 ) size_configs( 70, 96 );
@@ -127,7 +133,7 @@
             }
     }
 
-    void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height){      //verificar tamanho da carta ao adicionar na mao
+    void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height ){      //verificar tamanho da carta ao adicionar na mao
         GtkWidget       *image;
         GdkPixbuf      *pixbuf;
         char location[50];
@@ -136,14 +142,14 @@
         pixbuf = gdk_pixbuf_new_from_file( location, NULL );
         pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
         image = gtk_image_new_from_pixbuf( pixbuf );
-                gtk_widget_show(image);
-                    if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
-                        if( active == 0 ) {     //verificar qual player é
-                            gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     //add na segunda coluna
-                            count_row2_p1++;
-                        } else {
-                            gtk_grid_attach( hand, image, count_row2_p2, 1, 1, 1 );
-                            count_row2_p2++;
-                        }
-                    } else gtk_grid_attach( hand, image, (count_cards-1), 0, 1, 1 );
+            gtk_widget_show(image);
+                if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
+                    if( active == 0 ) {     //verificar qual player é
+                        gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     //add na segunda coluna
+                        count_row2_p1++;
+                    } else {
+                        gtk_grid_attach( hand, image, count_row2_p2, 1, 1, 1 );
+                        count_row2_p2++;
+                    }
+                } else gtk_grid_attach( hand, image, (count_cards-1), 0, 1, 1 );
     }

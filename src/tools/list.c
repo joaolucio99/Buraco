@@ -102,10 +102,11 @@
         return 1;
     }
 
-    int list_count_size( list *l ){
+    int list_count_size( list *l , int choice ){
         int cont = 0;
             if( list_is_empty( l ) == 1 ){
-                return 1;
+                if( choice == 0 ) return 0;
+                else return -1;
             } else{
                 header *aux = l->start;
                     while( aux != NULL ){

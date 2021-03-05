@@ -2,6 +2,7 @@
 #define GAME_STARTED_TOOLS
 #include "../../tools/general_tools.h"
 #include "game_started.h"
+#include "mechanics.h"
 
     extern int active;
     extern int count_round;
