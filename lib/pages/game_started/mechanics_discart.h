@@ -9,6 +9,8 @@
 
     void set_card_name_cb_box();
 
+    void hand_to_trash();
+
     void on_discart_card_clicked();
 
     void on_discart_back_clicked();

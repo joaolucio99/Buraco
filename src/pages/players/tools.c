@@ -57,6 +57,7 @@
                 pixbuf = gdk_pixbuf_new_from_file( location, NULL );
                 pixbuf = gdk_pixbuf_scale_simple( pixbuf, 114, 158, GDK_INTERP_BILINEAR );
                 image = gtk_image_new_from_pixbuf( pixbuf );
+                    gtk_widget_set_name( image, location );
                     gtk_widget_show( image );
                     gtk_grid_attach( hand, image, count_grid, 0, 1, 1 );
                 aux = aux->next;

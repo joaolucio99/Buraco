@@ -7,7 +7,6 @@
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
         deck[deck_amount_cards].active = 1;
         deck[deck_amount_cards].active_on.trash = 1;
-                if( list_is_empty( trash ) == 1 ) trash = new_list();
             list_insert( trash, deck[deck_amount_cards] );
             add_card_trash_view();
         deck_amount_cards--;
@@ -39,6 +38,7 @@
         pixbuf = gdk_pixbuf_new_from_file( location, NULL );
         pixbuf = gdk_pixbuf_scale_simple( pixbuf, 54, 74, GDK_INTERP_BILINEAR );
         image = gtk_image_new_from_pixbuf( pixbuf );
+        gtk_widget_set_name( image, location );
             gtk_widget_show(image);
                 if( count < 21 ){
                     gtk_grid_attach( trash_grid, image, (count-1), 0, 1, 1 );
@@ -89,6 +89,7 @@
                                 list_remove( trash, &temp );
                                 count_trash = list_count_size( trash , 1 ) ; 
                         }
+                    player[active].buy_card = 1;
                 } 
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR O LIXO,\nPOIS JA COMPROU DO MONTE" );
     }
@@ -132,6 +133,7 @@
         pixbuf = gdk_pixbuf_new_from_file( location, NULL );
         pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
         image = gtk_image_new_from_pixbuf( pixbuf );
+            gtk_widget_set_name( image, location );
             gtk_widget_show(image);
                 if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
                     if( active == 0 ) {     //verificar qual player é

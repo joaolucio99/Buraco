@@ -65,12 +65,12 @@
         new->next = NULL;
             if( list_is_empty( l ) == 1 ){
                 l->start = new;
-            } else if( pos == 1 ) {
+            } else if( pos == 0 ) {
                 new->next = l->start;
                 l->start = new;
             } else{
                 header *aux = l->start;
-                int count = 1;
+                int count = 0;
                     while( aux != NULL && count != pos ){
                         aux = aux->next;
                         count++;
@@ -84,12 +84,12 @@
     int list_remove_pos( list *l, cards *card_removed, int pos){
         header *aux = l->start;
         header *previous;
-            if( pos = 1 ){
+            if( pos == 0 ){
                 *card_removed = aux->l_card;
                 l->start = aux->next;
                     free( aux );
             } else{
-                int count = 1;
+                int count = 0;
                     while( aux->next != NULL && count != pos ){
                         previous = aux;
                         aux = aux->next;
@@ -120,12 +120,12 @@
     int list_search_key( list *l, cards card_to_search , int *key ){
             if( l->start == NULL ) return 1;
         header *aux = l->start;
-        int i = 1;
-            while( aux != NULL && aux->l_card.suit != card_to_search.suit && strcmp( aux->l_card.number, card_to_search.number ) != 0 ){
+        int i = 0;
+            while( (aux != NULL) && ( strcmp( aux->l_card.image, card_to_search.image ) != 0 ) ){
                 aux = aux->next;
                 i++;
             }
-            if(aux==NULL) return 1;
+            if( aux == NULL ) return 1;
             else{
                 *key = i;
                 return 0;
