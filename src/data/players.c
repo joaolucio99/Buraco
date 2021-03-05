@@ -11,6 +11,7 @@
                 player[i].score = 0;
                 player[i].hand = new_list();
                 player[i].buy_card = 0;
+                player[i].discard_card = 0;
                     if( i == 0 ) strcpy( player[i].icon, "./assets/user_small.png" );
                     else strcpy( player[i].icon, "./assets/user2_small.png" );
             }

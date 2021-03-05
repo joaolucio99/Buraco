@@ -2,7 +2,8 @@
 #define GAME_STARTED_TOOLS
 #include "../../tools/general_tools.h"
 #include "game_started.h"
-#include "mechanics.h"
+#include "mechanics_trash.h"
+#include "mechanics_discart.h"
 
     extern int active;
     extern int count_round;
@@ -18,8 +19,6 @@
     void on_pass_turn_clicked();
 
     void on_win_game_clicked();
-
-    void on_card_trash_clicked();
 
     void add_card_on_hand();
 

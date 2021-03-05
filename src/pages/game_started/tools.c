@@ -48,26 +48,17 @@
     }
 
     void on_pass_turn_clicked(){        //clicar no botao passar a vez do jogador
-        player[active].buy_card = 0;
-                if( active == 0 ) active=1;
-                else active=0;
-            turn();
+            if( player[active].discard_card == 1 ){
+                player[active].buy_card = 0;
+                player[active].discard_card = 0;
+                    if( active == 0 ) active=1;
+                    else active=0;
+                turn();
+            } else set_dialog( "VOCÊ NÃO PODE PASSAR O TURNO\nSEM DESCARTAR NENHUMA CARTA" );
     }
 
     void on_win_game_clicked(){         //clicar no botao de bater
         gtk_main_quit();
-    }
-
-    void on_card_trash_clicked(){       //dialog botao jogar carta pro lixo
-        GtkWidget          *dialog;
-        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
-        deck[deck_amount_cards].active = 1;
-        deck[deck_amount_cards].active_on.trash = 1;
-                if( list_is_empty( trash ) == 1 ) trash = new_list();
-            list_insert( trash, deck[deck_amount_cards] );
-            add_card_trash_view();
-        deck_amount_cards--;
-            gtk_widget_hide( dialog );
     }
 
     void on_card_buy_clicked(){         //dialog botao comprar carta

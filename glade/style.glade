@@ -729,6 +729,24 @@
                 <property name="y">565</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkButton" id="discard_button">
+                <property name="label" translatable="yes">DESCARTAR </property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_discard_button_clicked" swapped="no"/>
+                <style>
+                  <class name="button_with_warning"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">515</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="name">game_page</property>
@@ -915,6 +933,121 @@
       </object>
     </child>
   </object>
+  <object class="GtkDialog" id="discart">
+    <property name="width_request">350</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">DESCARTAR</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
+    <property name="transient_for">main_window</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkButton" id="discart_card">
+                <property name="label" translatable="yes">DESCARTAR</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_discart_card_clicked" swapped="no"/>
+                <style>
+                  <class name="trash_card"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="discart_back">
+                <property name="label" translatable="yes">VOLTAR</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_discart_back_clicked" swapped="no"/>
+                <style>
+                  <class name="buy_card"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">11</property>
+                <property name="label" translatable="yes">SELECIONE A CARTA PRA DESCARTE</property>
+                <style>
+                  <class name="dg_name_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="cards_list_discart">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">15</property>
+                <property name="margin_bottom">15</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkDialog" id="trash">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">LIXO</property>
@@ -972,7 +1105,7 @@
                 <property name="position">2</property>
               </packing>
             </child>
-            <child type="center">
+            <child>
               <placeholder/>
             </child>
           </object>
@@ -987,33 +1120,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="row_spacing">2</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
             <child>
               <placeholder/>
             </child>

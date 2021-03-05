@@ -1,10 +1,13 @@
-#ifndef MECHANICS
-#define MECHANICS
+#ifndef MECHANICS_TRASH
+#define MECHANICS_TRASH
 #include "../../tools/general_tools.h"
 #include "tools.h"
 #include "game_started.h"
+#include "mechanics_discart.h"
 
     extern int row_trash[5];
+
+    void on_card_trash_clicked();
 
     void on_trash_back_clicked();
 

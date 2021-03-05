@@ -1,6 +1,19 @@
-#include "../../../lib/pages/game_started/mechanics.h"
+#include "../../../lib/pages/game_started/mechanics_trash.h"
 
     int row_trash[5] = { 0, 0, 0, 0, 0 };
+
+    void on_card_trash_clicked(){       //dialog botao jogar carta pro lixo
+        GtkWidget          *dialog;
+        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+        deck[deck_amount_cards].active = 1;
+        deck[deck_amount_cards].active_on.trash = 1;
+                if( list_is_empty( trash ) == 1 ) trash = new_list();
+            list_insert( trash, deck[deck_amount_cards] );
+            add_card_trash_view();
+        deck_amount_cards--;
+        player[active].discard_card = 1;
+            gtk_widget_hide( dialog );
+    }
 
     void on_trash_back_clicked(){       //fechar lixo
         GtkWidget           *dialog;
@@ -51,7 +64,7 @@
         if( player[active].buy_card == 0 ){
             int count_trash = list_count_size( trash , 0 ) ; 
             int verification = list_count_size( trash , 1 ) ;
-                if( verification == -1 ) set_dialog( "NÃO TEM MAIS CARTAS NO LIXO" );
+                if( verification == -1 ) set_dialog( "NÃO TEM CARTAS NO LIXO" );
                 else{
                     int count_hand = list_count_size( player[active].hand , 0 );
                     GtkGrid          *hand;
@@ -77,7 +90,7 @@
                                 count_trash = list_count_size( trash , 1 ) ; 
                         }
                 } 
-        } else set_dialog( "VOCÊ NÃO PODE COMPRAR O LIXO\nPOIS JA COMPROU DO MONTE" );
+        } else set_dialog( "VOCÊ NÃO PODE COMPRAR O LIXO,\nPOIS JA COMPROU DO MONTE" );
     }
 
     void del_card_trash( int count_trash ){      //deletar a carta visualmente do lixo
