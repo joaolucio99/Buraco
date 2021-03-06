@@ -17,4 +17,6 @@
 
     void deal_cards();
 
+    void fisher_yates();
+
 #endif    

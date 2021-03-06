@@ -116,7 +116,7 @@
                     gtk_widget_destroy( image );
                 new_img = gtk_image_new_from_pixbuf( pixbuf );
                     gtk_widget_show( new_img );
-                    gtk_widget_set_name( new_img, location );
+                    gtk_widget_set_name( new_img, aux->l_card.widget );
                         if( count_grid > 23 ) gtk_grid_attach( hand, new_img, count_grid2, 1, 1, 1 );
                         else gtk_grid_attach( hand, new_img, count_grid, 0, 1, 1 );
                 aux = aux->next;
@@ -134,7 +134,7 @@
         pixbuf = gdk_pixbuf_new_from_file( location, NULL );
         pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
         image = gtk_image_new_from_pixbuf( pixbuf );
-            gtk_widget_set_name( image, location );
+            gtk_widget_set_name( image, deck[deck_amount_cards].widget );
             gtk_widget_show(image);
                 if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
                     if( active == 0 ) {     //verificar qual player é

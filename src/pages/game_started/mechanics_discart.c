@@ -41,9 +41,17 @@
                         if( count_grid < 24 ) {
                             GtkWidget       *image;
                             image = gtk_grid_get_child_at( hand, z, 0 );
-                            char *teste;
-                            teste = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                                if( strcmp( text_compare, teste ) == 0 ){   //se a carta for igual
+                            char *current_card_widget_name, *split_widget_name, compare_text_widget[50];
+
+                            strcpy( compare_text_widget, "./assets/normal_cards/" );
+                            
+                            current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
+                            const char split_key[2] = "*";
+                            split_widget_name = strtok( current_card_widget_name, split_key );  //nome widget splitado
+
+                            strcat( compare_text_widget, split_widget_name );
+
+                                if( strcmp( text_compare, compare_text_widget ) == 0 ){   //se a carta for igual
                                     header *aux = player[active].hand->start;
                                         while( aux != NULL ){
                                             if( strcmp( text_select, aux->l_card.image ) == 0) break;
@@ -79,7 +87,7 @@
         pixbuf = gdk_pixbuf_new_from_file( location, NULL );
         pixbuf = gdk_pixbuf_scale_simple( pixbuf, 54, 74, GDK_INTERP_BILINEAR );
         image = gtk_image_new_from_pixbuf( pixbuf );
-        gtk_widget_set_name( image, location );
+        gtk_widget_set_name( image, temp.widget );
             gtk_widget_show(image);
                 if( count < 21 ){
                     gtk_grid_attach( trash_grid, image, (count-1), 0, 1, 1 );
