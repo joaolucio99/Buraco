@@ -61,6 +61,8 @@
     }
 
     void on_buy_trash_clicked(){        //comprar todas cartas lixo
+        GtkWidget           *dialog;
+        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "trash" ));
         if( player[active].buy_card == 0 ){
             int count_trash = list_count_size( trash , 0 ) ; 
             int verification = list_count_size( trash , 1 ) ;
@@ -81,7 +83,6 @@
                                 else if ( count_hand > 15 && count_hand < 20 ) add_card_trash_to_hand( count_hand, hand , 70 , 96, aux->l_card.image, aux->l_card.widget );
                                 else if ( count_hand > 18 ) add_card_trash_to_hand( count_hand, hand , 54 , 74, aux->l_card.image, aux->l_card.widget );
                             aux = aux->next;
-                            check_size_render();
                         }
                         while( count_trash != -1 ){     //removendo cartas da lista e visualmente do lixo
                             cards temp;
@@ -91,6 +92,8 @@
                         }
                     player[active].buy_card = 1;
                 } 
+            check_size_render();
+            gtk_widget_hide( dialog );
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR O LIXO,\nPOIS JA COMPROU DO MONTE" );
     }
 

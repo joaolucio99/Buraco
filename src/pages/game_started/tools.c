@@ -96,32 +96,39 @@
         int count_grid = 0;
         int count_grid2 = 0;
         GtkGrid          *hand;
-        GtkWidget        *hand_widget;
+        GtkWidget       *new_img;
+        GdkPixbuf       *pixbuf;
         header *aux = player[active].hand->start;
             if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
             else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
-            if( active == 0 ) hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
-            else hand_widget = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p2" ));
             while( aux != NULL ){
-                GtkWidget       *image;
-                GtkWidget       *new_img;
-                GdkPixbuf       *pixbuf;
                 char location[50];
                     strcpy( location, "./assets/normal_cards/" );
                     strcat( location, aux->l_card.image );
                 pixbuf = gdk_pixbuf_new_from_file( location, NULL );
                 pixbuf = gdk_pixbuf_scale_simple( pixbuf, width, height, GDK_INTERP_BILINEAR );
-                        if( count_grid > 23 ) image = gtk_grid_get_child_at( hand, count_grid2, 1 );
-                        else image = gtk_grid_get_child_at( hand, count_grid, 0 );
-                    gtk_widget_destroy( image );
+                    if( count_grid == 0 ){
+                        gtk_grid_remove_row( hand, 0 );
+                        gtk_grid_remove_row( hand, 1 );
+                    }
                 new_img = gtk_image_new_from_pixbuf( pixbuf );
                     gtk_widget_show( new_img );
                     gtk_widget_set_name( new_img, aux->l_card.widget );
-                        if( count_grid > 23 ) gtk_grid_attach( hand, new_img, count_grid2, 1, 1, 1 );
-                        else gtk_grid_attach( hand, new_img, count_grid, 0, 1, 1 );
+                        if( count_grid == 0 ){
+                            gtk_grid_insert_row( hand, 0 );
+                            gtk_grid_insert_row( hand, 1 );
+                                for( int z = 0; z < 24; z ++){
+                                    gtk_grid_insert_column( hand, z );
+                                }
+                        }
+                        if( count_grid > 23 ){
+                            gtk_grid_attach( hand, new_img, count_grid2, 1, 1, 1 );
+                            count_grid2++;
+                        } else {
+                            gtk_grid_attach( hand, new_img, count_grid, 0, 1, 1 );
+                            count_grid++;
+                        }
                 aux = aux->next;
-                        if( count_grid > 23 ) count_grid2++;
-                        else count_grid++;
             }
     }
 

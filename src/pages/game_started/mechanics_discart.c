@@ -13,7 +13,7 @@
                     while ( aux != NULL ){
                         char card_name[30];
                             set_card_name_cb_box( aux->l_card.suit, aux->l_card.number, card_name );
-                            gtk_combo_box_text_insert( combo_box_text, count_list, aux->l_card.image, card_name );
+                            gtk_combo_box_text_insert( combo_box_text, count_list, aux->l_card.widget, card_name );
                         count_list++;
                         aux = aux->next;
                     }
@@ -26,35 +26,55 @@
         if( player[active].discard_card == 0 ){
             GtkComboBox        *combo_box;
             GtkGrid            *hand;
+            GtkWidget          *dialog;
+            GtkComboBoxText    *combo_box_text;
             char *text_select;
-            char text_compare[50];
             int count_grid = list_count_size( player[active].hand, 0 );
+            dialog = GTK_WIDGET( gtk_builder_get_object( builder, "discart" ));
+            combo_box_text =  GTK_COMBO_BOX_TEXT( gtk_builder_get_object( builder, "cards_list_discart" ));
             combo_box =  GTK_COMBO_BOX( gtk_builder_get_object( builder, "cards_list_discart" ));
-            text_select = (gchar*)gtk_combo_box_get_active_id (combo_box);      // nome da carta que a pessoa quer descartar
-                strcpy( text_compare, "./assets/normal_cards/" );
-                strcat( text_compare, text_select);
-                
-                    if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
-                    else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
-
-                    for( int z = 0; z < count_grid ; z++ ){
-                        if( count_grid < 24 ) {
+            text_select = (gchar*)gtk_combo_box_get_active_id (combo_box);      // nome da carta que a pessoa quer descartar    
+                if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
+                else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
+                for( int z = 0; z < count_grid ; z++ ){     //inicio percorrer as linhas para selecionar a carta
+                    if( z < 24 ) {
+                        GtkWidget       *image;
+                        image = gtk_grid_get_child_at( hand, z, 0 );
+                        char *current_card_widget_name;
+                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
+                            if( strcmp( text_select, current_card_widget_name ) == 0 ){   //se a carta for igual
+                                header *aux = player[active].hand->start;
+                                    while( aux != NULL ){
+                                        if( strcmp( text_select, aux->l_card.widget ) == 0) break;
+                                        else aux = aux->next;
+                                    }
+                                int position_card;
+                                    list_search_key( player[active].hand, aux->l_card, &position_card );
+                                cards temp;
+                                    list_remove_pos( player[active].hand, &temp, position_card );
+                                temp.active_on.hand = 0;
+                                temp.active_on.trash = 0;
+                                    list_insert( trash, temp );
+                                    gtk_widget_destroy( image );
+                                    hand_to_trash( temp );
+                                player[active].discard_card = 1;
+                                    gtk_combo_box_text_remove_all( combo_box_text );
+                                    gtk_widget_hide( dialog );
+                                return;
+                            }
+                    } else{     //tiver mais de uma linha de cartas
+                        int count_p_rows;
+                        if( active == 0 ) count_p_rows = count_row2_p1;
+                        else count_p_rows = count_row2_p2;
+                        for(int k=0; k < count_p_rows; k++){
                             GtkWidget       *image;
-                            image = gtk_grid_get_child_at( hand, z, 0 );
-                            char *current_card_widget_name, *split_widget_name, compare_text_widget[50];
-
-                            strcpy( compare_text_widget, "./assets/normal_cards/" );
-                            
+                            image = gtk_grid_get_child_at( hand, k, 1 );
+                            char *current_card_widget_name;
                             current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                            const char split_key[2] = "*";
-                            split_widget_name = strtok( current_card_widget_name, split_key );  //nome widget splitado
-
-                            strcat( compare_text_widget, split_widget_name );
-
-                                if( strcmp( text_compare, compare_text_widget ) == 0 ){   //se a carta for igual
+                                if( strcmp( text_select, current_card_widget_name ) == 0 ){   //se a carta for igual
                                     header *aux = player[active].hand->start;
                                         while( aux != NULL ){
-                                            if( strcmp( text_select, aux->l_card.image ) == 0) break;
+                                            if( strcmp( text_select, aux->l_card.widget ) == 0) break;
                                             else aux = aux->next;
                                         }
                                     int position_card;
@@ -67,11 +87,15 @@
                                         gtk_widget_destroy( image );
                                         hand_to_trash( temp );
                                     player[active].discard_card = 1;
-                                        return;
-                                }
+                                        if( active == 0 ) count_row2_p1--;
+                                        else count_row2_p2--;
+                                        gtk_combo_box_text_remove_all( combo_box_text );
+                                        gtk_widget_hide( dialog );
+                                    return;
+                            }
                         }
-                        //else gtk_grid_attach( hand, new_img, count_grid, 0, 1, 1 );
                     }
+                }
         } else set_dialog( "VOCÊ NÃO PODE DESCARTAR MAIS\nQUE UMA CARTA" ); 
     }  
 
