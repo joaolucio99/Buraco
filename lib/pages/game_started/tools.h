@@ -4,6 +4,7 @@
 #include "game_started.h"
 #include "mechanics_trash.h"
 #include "mechanics_discart.h"
+#include "mechanics_get_down_game.h"
 
     extern int active;
     extern int count_round;

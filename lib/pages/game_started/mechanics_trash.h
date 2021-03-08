@@ -2,8 +2,6 @@
 #define MECHANICS_TRASH
 #include "../../tools/general_tools.h"
 #include "tools.h"
-#include "game_started.h"
-#include "mechanics_discart.h"
 
     extern int row_trash[5];
 

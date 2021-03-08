@@ -2,8 +2,6 @@
 #define MECHANICS_DISCART
 #include "../../tools/general_tools.h"
 #include "tools.h"
-#include "game_started.h"
-#include "mechanics_trash.h"
 
     void on_discard_button_clicked();
 
