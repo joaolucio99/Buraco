@@ -77,3 +77,47 @@
         }
             gtk_widget_hide( dialog );     
     }
+
+    void on_get_down_card_clicked(){        //dialog botao de descer jogo
+        //inico etapa pegando o nome das cartas que o jogador que descer jogo
+        GtkComboBox        *combo_box;
+        char *text_select[comb_amount_cards];   
+        char selector_combo_box[50],temp_number[3];
+            for( int z = 0; z < comb_amount_cards; z++ ){      
+                strcpy( selector_combo_box , "combo_card_");
+                sprintf( temp_number, "%i", z );
+                strcat( selector_combo_box , temp_number );
+                combo_box =  GTK_COMBO_BOX( gtk_builder_get_object( builder, selector_combo_box ));
+                text_select[z] = (gchar*)gtk_combo_box_get_active_id (combo_box);
+            }
+        //fim da etapa      
+
+        //inicio etapa pegar as cartas que é pra ser decidas pro jogo  
+        cards               cards_to_check[comb_amount_cards];
+            for( int l = 0; l < comb_amount_cards; l++ ){   // for para comparar cada carta escolhida para descer pro jogo
+                header *aux = player[active].hand->start;
+                    while( aux != NULL ){
+                        if( strcmp( text_select[l], aux->l_card.widget ) == 0) {
+                            cards_to_check[l] = aux->l_card;
+                            break;
+                        } else aux = aux->next;
+                    }
+                }
+        //fim da etapa
+
+        //inicio checagem se pode descer cartas
+            if( letters_can_come_down == 0){
+                printf("\n\nPODE DESCER\n\n");
+            } else printf("\n\nNAO PODE DESCER\n\n");
+    }
+
+    int letters_can_come_down( cards cards_to_check[] , int amount ){
+        for( int i = 0; i < amount-1; i++ ){
+            if( cards_to_check[i].suit == cards_to_check[i+1].suit || cards_to_check[i].joker ==1 || cards_to_check[i+1].joker == 1 ){
+                if ( strcmp( cards_to_check[i].number, cards_to_check[i+1].number ) == 0 || cards_to_check[i].joker ==1 || cards_to_check[i+1].joker == 1 ){
+                    return 0;
+                }
+            } else return 1;
+        }
+    }
+
