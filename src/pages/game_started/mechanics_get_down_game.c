@@ -106,18 +106,87 @@
         //fim da etapa
 
         //inicio checagem se pode descer cartas
-            if( letters_can_come_down == 0){
-                printf("\n\nPODE DESCER\n\n");
-            } else printf("\n\nNAO PODE DESCER\n\n");
+            int controller = cards_can_come_down( cards_to_check, comb_amount_cards );
+            if( controller == -1 ) printf("\n\nNAO PODE USAR MAIS DE UM CORINGA\n\n");
+            else if( controller == comb_amount_cards - 1 ) printf("\n\nPODE DESCER\n\n");
+            else printf("\n\nNAO PODE DESCER\n\n");
     }
 
-    int letters_can_come_down( cards cards_to_check[] , int amount ){
-        for( int i = 0; i < amount-1; i++ ){
-            if( cards_to_check[i].suit == cards_to_check[i+1].suit || cards_to_check[i].joker ==1 || cards_to_check[i+1].joker == 1 ){
-                if ( strcmp( cards_to_check[i].number, cards_to_check[i+1].number ) == 0 || cards_to_check[i].joker ==1 || cards_to_check[i+1].joker == 1 ){
-                    return 0;
-                }
-            } else return 1;
-        }
+    int cards_can_come_down( cards cards_[] , int amount ){
+        int pos[amount];
+        int joker = 0;
+        int controller = 0;
+        int controller_joker = 0;
+        int position_joker;
+            for( int i = 0; i < amount; i++ ){      //pegando as posições de possiveis coringas
+                if( cards_[i].joker == 1 ) pos[i] = 1;
+                else pos[i] = 0;
+            }
+            for( int i = 0; i < amount; i++ ){      //verificando se há coringas
+                if( pos[i] == 1 ){
+                    joker = 1;
+                    break;
+                } 
+            }
+
+            if( joker == 1){        //verificar coringas
+                for( int i = 0; i < amount; i++ ){
+                    if( pos[i] == 1 ){  //se é um coringa
+                        if( i == 0 ) {  //se o dois e a carta inicial do jogo
+                            if( ( cards_[i].suit == cards_[i+1].suit ) && ( cards_[i].number+1 == cards_[i+1].number ) ) pos[i] = 0;
+                            else position_joker = i;
+                        } else if( i == amount - 1 ) position_joker = i;
+                          else{
+                            if( (cards_[i].suit == cards_[i-1].suit) || (cards_[i].suit == cards_[i+1].suit) && ( cards_[i].number+1 == cards_[i+1].number ) || ( cards_[i].number-1 == cards_[i-1].number ) ) pos[i] = 0;
+                            else {
+                                position_joker = i;
+                            }
+                        }
+                    } 
+                } 
+            }
+
+            for( int i = 0; i < amount; i++ ){      //contar quantos coringas
+                if( pos[i] == 1 ) controller_joker++;
+            }
+
+            if( controller_joker > 1 ){     //se tiver mais de um coringa
+                controller = -1;
+                return controller;
+            }
+
+            for( int i = 0; i < amount-1; i++ ){    //verificando as cartas
+                if( joker == 1 ){       //tem coringas no jogo
+                    if ( pos[1] == 1 ){     //se o coringa esta atuando no lugar de uma carta 2
+                        if( cards_[0].suit == cards_[1].suit && cards_[1].suit == cards_[2].suit){      //se o coringa e do mesmo naipe do A e do 3
+                            if( cards_[i].suit == cards_[i+1].suit && cards_[i].number+1 == cards_[i+1].number ) controller++;
+                            else controller--;
+                        } else{         //coringa atuando como coringa na posição de carta dois
+                            if( i < 2 ){
+                                if( cards_[i].number+1 == cards_[i+1].number ) controller++;
+                                else controller--;
+                            } else{
+                                if( cards_[i].suit == cards_[i+1].suit && cards_[i].number+1 == cards_[i+1].number ) controller++;
+                                else controller--;
+                            }
+                        }
+                    } else{     //se o coringa nao é o dois
+                        if( i == position_joker-1 || i == position_joker ){ //carta anterior ao coringa e coringa
+                            if( i == position_joker-1){
+                                if( cards_[i].number+2 == cards_[i+2].number ) controller++;
+                                else controller--;
+                            } else controller++;
+                        } else{
+                            if( cards_[i].suit == cards_[i+1].suit && cards_[i].number+1 == cards_[i+1].number ) controller++;
+                            else controller--;
+                        }
+                    }
+                } else{ //não tem coringas no jogo
+                    if( cards_[i].suit == cards_[i+1].suit && cards_[i].number+1 == cards_[i+1].number ) controller++;
+                    else controller--;
+                } 
+            }
+            printf("\n%i\n", controller);
+            return controller;
     }
 

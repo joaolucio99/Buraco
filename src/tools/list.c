@@ -121,7 +121,7 @@
             if( l->start == NULL ) return 1;
         header *aux = l->start;
         int i = 0;
-            while( (aux != NULL) && ( strcmp( aux->l_card.image, card_to_search.image ) != 0 ) ){
+            while( (aux != NULL) && ( strcmp( aux->l_card.widget, card_to_search.widget ) != 0 ) ){
                 aux = aux->next;
                 i++;
             }
@@ -151,7 +151,7 @@
         header *aux = l->start;
             printf("\nCartas: \n");
                 while( aux != NULL ){
-                    printf(" Valor: %s,  Naipe: %d,  Imagem: %s \n", aux->l_card.number, aux->l_card.suit, aux->l_card.image );
+                    printf(" Valor: %i,  Naipe: %d,  Imagem: %s \n", aux->l_card.number, aux->l_card.suit, aux->l_card.image );
                     aux = aux->next;
                 }
             printf("\n");

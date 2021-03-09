@@ -6,8 +6,8 @@
     }is_active;
 
     typedef struct cards{
-        int suit, joker, active;
-        char number[3], image[50], widget[50];
+        int suit, joker, active, number;
+        char image[50], widget[50];
         is_active active_on;
     }cards;
 

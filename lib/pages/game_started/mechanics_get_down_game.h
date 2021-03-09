@@ -9,7 +9,7 @@
 
     void get_labels_info();
 
-    int letters_can_come_down();
+    int cards_can_come_down();
 
     void on_button_get_down_game_clicked();
 

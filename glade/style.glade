@@ -1282,11 +1282,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_0">
+              <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_top">11</property>
-                <property name="margin_bottom">11</property>
+                <property name="label" translatable="yes">Insira as cartas na ordem correta</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1295,7 +1294,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_1">
+              <object class="GtkComboBoxText" id="combo_card_0">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
@@ -1308,7 +1307,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_2">
+              <object class="GtkComboBoxText" id="combo_card_1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
@@ -1321,7 +1320,8 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_3">
+              <object class="GtkComboBoxText" id="combo_card_2">
+                <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1333,7 +1333,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_4">
+              <object class="GtkComboBoxText" id="combo_card_3">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1345,7 +1345,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_5">
+              <object class="GtkComboBoxText" id="combo_card_4">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1357,7 +1357,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_6">
+              <object class="GtkComboBoxText" id="combo_card_5">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1369,7 +1369,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_7">
+              <object class="GtkComboBoxText" id="combo_card_6">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1381,7 +1381,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_8">
+              <object class="GtkComboBoxText" id="combo_card_7">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1393,7 +1393,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_9">
+              <object class="GtkComboBoxText" id="combo_card_8">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1405,7 +1405,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_10">
+              <object class="GtkComboBoxText" id="combo_card_9">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1417,7 +1417,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_11">
+              <object class="GtkComboBoxText" id="combo_card_10">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1429,7 +1429,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_12">
+              <object class="GtkComboBoxText" id="combo_card_11">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1441,7 +1441,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBoxText" id="combo_card_13">
+              <object class="GtkComboBoxText" id="combo_card_12">
                 <property name="can_focus">False</property>
                 <property name="margin_top">11</property>
                 <property name="margin_bottom">11</property>
@@ -1450,6 +1450,18 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">14</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="combo_card_13">
+                <property name="can_focus">False</property>
+                <property name="margin_top">11</property>
+                <property name="margin_bottom">11</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">15</property>
               </packing>
             </child>
           </object>

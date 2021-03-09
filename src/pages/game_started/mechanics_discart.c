@@ -133,9 +133,15 @@
                 }
     }
 
-    void set_card_name_cb_box( int suit , char *number, char *card_name ){    //formar a string para definir nome da carta
-        char temp[50];
-            strcpy( temp, number );
+    void set_card_name_cb_box( int suit , int number, char *card_name ){    //formar a string para definir nome da carta
+        char temp[50],temp_number[3],number_[3];
+        sprintf( temp_number, "%i", number ); 
+                if( number == 1) strcpy( number_, "A" );
+                else if( number > 1 && number < 11) strcpy( number_, temp_number );
+                else if( number == 11 ) strcpy( number_, "J" );
+                else if( number == 12 ) strcpy( number_, "Q" );
+                else if( number == 13 ) strcpy( number_, "K" );
+            strcpy( temp, number_ );
             strcat( temp , " - " );
                 if( suit == 1) strcat( temp , "Copas" );    
                 else if( suit == 2) strcat( temp, "Paus");                    
