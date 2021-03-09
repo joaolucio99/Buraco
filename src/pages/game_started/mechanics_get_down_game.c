@@ -122,14 +122,14 @@
             }
 
             if( cards_[1].joker == 1 ){      //verificar se o dois está como coringa ou não na posição dois
-                if( cards_[1].number + 1 == cards_[2].number && cards_[1].suit == cards_[2].suit && (cards_[1].number - 1) == cards_[0].number && cards_[1].suit == cards_[0].suit ){
+                if( cards_[1].number + 1 == cards_[2].number && cards_[1].suit == cards_[2].suit && (cards_[1].number - 1) == cards_[0].number && cards_[1].suit == cards_[0].suit || cards_[2].joker == 1 || cards_[0].joker == 1){
                     cards_[1].joker = 0;
                     joker_amount--;
                 }
             }
 
             if( cards_[0].joker == 1 ){     //verificando se o 2 no inicio e um coringa ou carta de jogo
-                if( cards_[1].number == 3 && cards_[0].suit == cards_[1].suit ){
+                if( cards_[1].number == 3 && cards_[0].suit == cards_[1].suit || cards_[1].joker == 1){
                     cards_[0].joker = 0;
                     joker_amount--;
                 }
@@ -148,21 +148,15 @@
 
             if( joker_amount == 1 ){    // tem coringa
                 for( int i = 0; i < amount-1; i++ ){
-                    if( i == 0 && joker_position == 0 ) result = 0;   //quando o coringa for a primeira carta
-                    else if( i == (amount -2) && joker_position == (amount - 2) ) result = 0;     //quando o coringa for a ultima
-                    else if( i == (joker_position - 1) && i != 0 ){   //quando estiver na carta anterior ao coringa e nao for a carta inicial
-                        if( cards_[i].suit == cards_[i-1].suit && cards_[i].number == (cards_[i-1].number + 1) ) result = 0;
-                        else result = 1;
+                    if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 && i != amount-2) result = 0;
+                    else if( i == amount-2 ){
+                        if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 ) result = 0;
+                        else{
+                            if( cards_[i+1].joker == 1  ) result = 0;
+                            else return 1;
+                        }
                     }
-                    else if( i == (joker_position-1) && i == 0 ) result = 0;      //quando estiver na cartar anterior ao coringa e for a inicial
-                    else if( i == joker_position ){         //quando estiver na carta do coringa
-                        if( (cards_[joker_position-1].number + 2) == cards_[joker_position+1].number && cards_[joker_position-1].suit == cards_[joker_position+1].suit ) result = 0;
-                        else return 1;
-                    }  
-                    else{       //quando estiver nas demais cartas
-                        if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit ) result = 0;
-                        else return 1;
-                    }
+                    else return 1;
                 }
             } else{     //nao tem coringa
                 for( int i = 0; i < amount-1; i++ ){
