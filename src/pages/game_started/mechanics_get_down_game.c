@@ -107,12 +107,106 @@
 
         //inicio checagem se pode descer cartas
             int controller = cards_can_come_down( cards_to_check, comb_amount_cards );
-            if( controller == 0 ) printf("\n\nPODE DESCER\n\n");
-            if( controller == 1 ) printf("\n\nNAO PODE DESCER\n\n");
-            if( controller == -100 ) printf("\n\nNAO PODE USAR MAIS DE UM CORINGA\n\n");
+                if( controller == 0 ) { 
+                    cards_on_table( cards_to_check, comb_amount_cards );
+                    player[active].n_games++;
+                    check_size_render();
+                }
+                if( controller == 1 ) printf("\n\nNAO PODE DESCER\n\n");
+                if( controller == -100 ) printf("\n\nNAO PODE USAR MAIS DE UM CORINGA\n\n");
+            
     }
 
-    int cards_can_come_down( cards cards_[] , int amount ){
+    void cards_on_table( cards _cards_[], int amount ){     //fazer que o jogo selecionado seja removido da mao e seja adicionado na lista jogo
+        GtkGrid            *hand;
+        int count_grid = list_count_size( player[active].hand, 0 );     //quantas cartas tem na mao
+            if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
+            else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
+            for( int l = 0; l < amount; l++ ){  //quantas cartas serao selecionadas
+                for( int z = 0; z < count_grid ; z++ ){     //inicio percorrer as linhas para selecionar a carta
+                    if( z < 24 ) {
+                        GtkWidget       *image;
+                        image = gtk_grid_get_child_at( hand, z, 0 );
+                        char *current_card_widget_name;
+                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
+                            if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){   //se a carta for igual
+                                int position_card;
+                                    list_search_key( player[active].hand, _cards_[l], &position_card );
+                                cards temp;
+                                    list_remove_pos( player[active].hand, &temp, position_card );    
+                                temp.active_on.hand = 0;
+                                temp.active = 0;
+                                    if( l == 0 ) player[active].games[player[active].n_games] = new_list();
+                                list_insert( player[active].games[player[active].n_games], temp );
+                                    hand_to_table( temp , player[active].n_games );
+                            }
+                    } else{     //tiver mais de uma linha de cartas
+                        int count_p_rows;
+                        if( active == 0 ) count_p_rows = count_row2_p1;
+                        else count_p_rows = count_row2_p2;
+                        for(int k=0; k < count_p_rows; k++){
+                            GtkWidget       *image;
+                            image = gtk_grid_get_child_at( hand, k, 1 );
+                            char *current_card_widget_name;
+                            current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
+                                if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){   //se a carta for igual
+                                    int position_card;
+                                        list_search_key( player[active].hand, _cards_[l], &position_card );
+                                    cards temp;
+                                        list_remove_pos( player[active].hand, &temp, position_card );    
+                                    temp.active_on.hand = 0;
+                                    temp.active = 0;
+                                        if( l == 0 ) player[active].games[player[active].n_games] = new_list();
+                                    list_insert( player[active].games[player[active].n_games], temp );
+                                        hand_to_table( temp , player[active].n_games );
+                                        if( active == 0 ) count_row2_p1--;
+                                        else count_row2_p2--;
+                            }
+                        }
+                    }
+                }
+            }
+    }
+
+    void hand_to_table( cards temp  , int choice ){     // descer carta da para o jogo correto na mesa
+        GtkGrid         *table_grid;
+        GtkWidget       *image;
+        GdkPixbuf       *pixbuf;
+        char location[50];
+        int count = list_count_size ( player[active].games[player[active].n_games], 0 );
+            if( active == 0 ) table_grid = GTK_GRID( gtk_builder_get_object( builder, "game_player1" ));
+            else table_grid = GTK_GRID( gtk_builder_get_object( builder, "game_player2" ));
+            strcpy( location, "./assets/small_cards/" );
+            strcat( location, temp.image );
+        pixbuf = gdk_pixbuf_new_from_file( location, NULL );
+        pixbuf = gdk_pixbuf_scale_simple( pixbuf, 30, 41, GDK_INTERP_BILINEAR );
+        image = gtk_image_new_from_pixbuf( pixbuf );
+        gtk_widget_set_name( image, temp.widget );
+            gtk_widget_show(image);
+            if( choice == 0){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 1){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 2){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 3){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 4){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 5){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 6){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 7){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 8){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            } else if( choice == 9){
+                gtk_grid_attach( table_grid, image, (count-1), choice, 1, 1 );
+            }
+    }
+
+    int cards_can_come_down( cards cards_[] , int amount ){     //função verificar se os jogos podem descer
         int result = 0, joker, joker_position, joker_amount = 0;
             for( int i = 0; i < amount; i++ ){      // verificando se há coringas e quantos
                 if( cards_[i].joker == 1 ){
@@ -122,7 +216,7 @@
             }
 
             if( cards_[1].joker == 1 ){      //verificar se o dois está como coringa ou não na posição dois
-                if( cards_[1].number + 1 == cards_[2].number && cards_[1].suit == cards_[2].suit && (cards_[1].number - 1) == cards_[0].number && cards_[1].suit == cards_[0].suit || cards_[2].joker == 1 || cards_[0].joker == 1){
+                if( cards_[1].number + 1 == cards_[2].number && cards_[1].suit == cards_[2].suit && cards_[1].number - 1 == cards_[0].number && cards_[1].suit == cards_[0].suit || cards_[2].joker == 1 || cards_[0].joker == 1){
                     cards_[1].joker = 0;
                     joker_amount--;
                 }
@@ -148,7 +242,7 @@
 
             if( joker_amount == 1 ){    // tem coringa
                 for( int i = 0; i < amount-1; i++ ){
-                    if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 && i != amount-2) result = 0;
+                    if( cards_[i].number + 1 == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 || cards_[i+1].joker == 1 && i != amount-2) result = 0;
                     else if( i == amount-2 ){
                         if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 ) result = 0;
                         else{

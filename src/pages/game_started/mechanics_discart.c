@@ -53,7 +53,7 @@
                                 cards temp;
                                     list_remove_pos( player[active].hand, &temp, position_card );
                                 temp.active_on.hand = 0;
-                                temp.active_on.trash = 0;
+                                temp.active_on.trash = 1;
                                     list_insert( trash, temp );
                                     gtk_widget_destroy( image );
                                     hand_to_trash( temp );
@@ -82,7 +82,7 @@
                                     cards temp;
                                         list_remove_pos( player[active].hand, &temp, position_card );
                                     temp.active_on.hand = 0;
-                                    temp.active_on.trash = 0;
+                                    temp.active_on.trash = 1;
                                         list_insert( trash, temp );
                                         gtk_widget_destroy( image );
                                         hand_to_trash( temp );

@@ -24,6 +24,7 @@
         int score, n_games, buy_card, discard_card;
         char name[16],icon[30];
         list *hand;
+        list *games[10];
     }players;  
 
 #endif    

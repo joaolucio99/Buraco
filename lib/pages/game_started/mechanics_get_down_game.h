@@ -9,7 +9,11 @@
 
     void get_labels_info();
 
+    void hand_to_table();
+
     int cards_can_come_down();
+
+    void cards_on_table();
 
     void on_button_get_down_game_clicked();
 
