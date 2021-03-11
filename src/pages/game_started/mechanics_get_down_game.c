@@ -108,9 +108,10 @@
         //inicio checagem se pode descer cartas
             int controller = cards_can_come_down( cards_to_check, comb_amount_cards );
                 if( controller == 0 ) { 
-                    cards_on_table( cards_to_check, comb_amount_cards );
                     player[active].n_games++;
+                    cards_on_table( cards_to_check, comb_amount_cards );
                     check_size_render();
+                    on_get_down_back_clicked();
                 }
                 if( controller == 1 ) printf("\n\nNAO PODE DESCER\n\n");
                 if( controller == -100 ) printf("\n\nNAO PODE USAR MAIS DE UM CORINGA\n\n");

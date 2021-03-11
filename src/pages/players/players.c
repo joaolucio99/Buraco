@@ -10,7 +10,7 @@
                 get_players_data( name_player1, name_player2 );        //gerando informações dos players
                 //create_player_log();
                 generate_deck();
-                shuffle();
+                //shuffle();
                 set_first_player();
                 deal_cards();
                 gtk_stack_set_visible_child_name ( stack, "game_page" );

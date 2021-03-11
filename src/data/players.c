@@ -7,7 +7,7 @@
             for( int i = 0; i < 2; i++ ){
                     if( i == 0 ) strncpy( player[i].name, name_player1 , 16);
                     else strncpy( player[i].name, name_player2 , 16);
-                player[i].n_games = 0;
+                player[i].n_games = -1;
                 player[i].score = 0;
                 player[i].hand = new_list();
                 player[i].buy_card = 0;

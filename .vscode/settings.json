@@ -10,6 +10,7 @@
         "typeinfo": "c",
         "gdk-pixbuf.h": "c",
         "game_start.h": "c",
-        "mechanics_trash.h": "c"
+        "mechanics_trash.h": "c",
+        "mechanics_edit_game.h": "c"
     }
 }
