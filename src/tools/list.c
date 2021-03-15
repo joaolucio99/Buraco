@@ -70,7 +70,7 @@
                 l->start = new;
             } else{
                 header *aux = l->start;
-                int count = 0;
+                int count = 1;
                     while( aux != NULL && count != pos ){
                         aux = aux->next;
                         count++;
@@ -132,26 +132,22 @@
             }
     }
 
-    int list_search_pos( list *l, cards *searched_card , int pos ){
-        if( l->start == NULL || pos <= 0 ) return 1;    
-    header *aux = l->start;
-    int i = 1;
-        while( aux != NULL && i<pos ){
-            aux = aux->next;
-            i++;
-        }
-        if( aux == NULL ) return 1;
-        else{
-            *searched_card = aux->l_card;
-            return 0;
-        }
+    int list_search_pos( list *l, cards *searched_card , int pos ){   
+        header *aux = l->start;
+        int i = 0;
+            while( aux != NULL && i<pos ){
+                aux = aux->next;
+                i++;
+            }
+        *searched_card = aux->l_card;
+        return 0;
     }
 
     void list_print( list *l ){
         header *aux = l->start;
             printf("\nCartas: \n");
                 while( aux != NULL ){
-                    printf(" Valor: %i,  Naipe: %d,  Imagem: %s \n", aux->l_card.number, aux->l_card.suit, aux->l_card.image );
+                    printf(" Valor: %i,  Naipe: %d,  Imagem: %s Joker: %i\n", aux->l_card.number, aux->l_card.suit, aux->l_card.image, aux->l_card.joker );
                     aux = aux->next;
                 }
             printf("\n");

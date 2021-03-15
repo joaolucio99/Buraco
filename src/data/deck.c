@@ -116,7 +116,7 @@
                 deck[i].active = 1;
                 deck[i].active_on.hand = 1;
                 if( i == 0) list_insert( player[first_player[0]].hand, deck[0] );
-                else if ( i == 1 ) list_insert( player[first_player[0]].hand, deck[1] );
+                else if ( i == 1 ) list_insert( player[first_player[0]].hand, deck[3] );
                 else if ( i == 2 ) list_insert( player[first_player[0]].hand, deck[2] );
                 else if ( i == 3 ) list_insert( player[first_player[0]].hand, deck[4] );
                 else if ( i == 4 ) list_insert( player[first_player[0]].hand, deck[6] );

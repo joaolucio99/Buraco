@@ -7,7 +7,13 @@
 
     void on_edit_down_card_clicked();
 
-    void on_game_to_edit_changed();
+    int count_joker();
+
+    void check_render_game_all();
+
+    int check_card_to_down();
+
+    void check_joker();
 
     void on_edit_down_card_clicked();
 

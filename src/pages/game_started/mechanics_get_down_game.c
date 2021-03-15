@@ -113,8 +113,8 @@
                     check_size_render();
                     on_get_down_back_clicked();
                 }
-                if( controller == 1 ) printf("\n\nNAO PODE DESCER\n\n");
-                if( controller == -100 ) printf("\n\nNAO PODE USAR MAIS DE UM CORINGA\n\n");
+                if( controller == 1 ) set_dialog( "VOCÊ NÃO PODE DESCER,\nJOGO INVÁLIDO" );
+                if( controller == -100 ) set_dialog( "VOCÊ NÃO PODE USAR MAIS\nQUE UM CORINGA" );
             
     }
 
@@ -243,9 +243,9 @@
 
             if( joker_amount == 1 ){    // tem coringa
                 for( int i = 0; i < amount-1; i++ ){
-                    if( cards_[i].number + 1 == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 || cards_[i+1].joker == 1 && i != amount-2) result = 0;
+                    if( cards_[i].number + 1 == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 || cards_[i+1].joker == 1 && i != amount-2 || cards_[i].number == 13 && cards_[i+1].number == 1 ) result = 0;
                     else if( i == amount-2 ){
-                        if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 ) result = 0;
+                        if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 || cards_[i].number == 13 && cards_[i+1].number == 1 ) result = 0;
                         else{
                             if( cards_[i+1].joker == 1  ) result = 0;
                             else return 1;
@@ -255,11 +255,10 @@
                 }
             } else{     //nao tem coringa
                 for( int i = 0; i < amount-1; i++ ){
-                    if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit ) result = 0;
+                    if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].number == 13 && cards_[i+1].number == 1 ) result = 0;
                     else return 1;
                 }
             }
-
             return result;
     }
 
