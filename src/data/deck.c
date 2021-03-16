@@ -10,7 +10,7 @@
 
     void generate_deck(){
         int number_widget[104];
-                for( int i = 0; i < 104; i++ ){ //preenchendo suits
+                for( int i = 0; i < 104; i++ ){ 
                     number_widget[i] = i;
                     if( i<26 ) deck[i].suit = 1;
                     else if( i>25 && i<52 ) deck[i].suit = 2;
@@ -18,7 +18,7 @@
                     else if( i>77 && i<104 ) deck[i].suit = 4;
                 }
             fisher_yates( number_widget );
-            for(int i = 0; i < 104; i++ ){ //preenchendo resto das info das cartas
+            for(int i = 0; i < 104; i++ ){ 
                 if( deck[i].suit == 1 ){
                     if( i<2 ) set_deck_infos( 1 , "_Copas.png" , 0 , i, number_widget, 15 );
                     else if( i>1 && i<4 ) set_deck_infos( 2 , "_Copas.png" , 1 ,i, number_widget, 10 );
@@ -92,9 +92,9 @@
             strcpy( final, number_ );
             strcat( final, location_ );
             strcpy( deck[i].image, final );
-            strcpy( temp, deck[i].image );      //salvando localizao da imagem temporariamente
+            strcpy( temp, deck[i].image );     
             strcat( temp, "*" );
-            sprintf( temp_number, "%i", number_widget[i] );     //convertendo numero aleatorio em string
+            sprintf( temp_number, "%i", number_widget[i] );     
             strcat( temp, temp_number );
             strcpy( deck[i].widget, temp );
         deck[i].active = 0;
@@ -102,7 +102,7 @@
         deck[i].value = value;
     }
 
-    void shuffle(){         //função embaralhar usando Fisher–Yates
+    void shuffle(){         
         int i = 104, j;
         srand( time(NULL) );
         cards temp;

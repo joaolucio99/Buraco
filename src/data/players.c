@@ -40,7 +40,7 @@
                     strcat( final_text, system_date );
                     strcat( final_text, "\n" );
                 player_log = fopen( "./logs/players_log.txt", "a" );
-                    if( player_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
+                    if( player_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        
                 int result = fputs( final_text, player_log );
                     if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
                 fclose( player_log );

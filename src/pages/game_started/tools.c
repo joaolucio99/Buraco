@@ -1,13 +1,13 @@
 #include "../../../lib/pages/game_started/tools.h"
     
-    int active;     //ver turno de qual player é
-    int count_round = 0;    //contadora de rounds
-    int count_row2_p1 = 0;      //acessar segunda fileira do grid de cartas
+    int active;   
+    int count_round = 0;  
+    int count_row2_p1 = 0;     
     int count_row2_p2 = 0;      
-    int deaths[2] = { 0, 0 };       //controle ver se mortos foram comprados
-    int game_end = 0;       //controle se jogo acabou
+    int deaths[2] = { 0, 0 };      
+    int game_end = 0;       
 
-    void set_current_player( char *location, char *name ){      //mostrar na area do player nome e imagem
+    void set_current_player( char *location, char *name ){      
         GtkImage           *image;
         GtkLabel           *label; 
         image = GTK_IMAGE( gtk_builder_get_object( builder, "player_active_icon" ));
@@ -16,7 +16,7 @@
             gtk_label_set_text( label , name );
     }
 
-    void set_current_hand(){       //renderizar mao do player atual
+    void set_current_hand(){      
         GtkWidget       *hand_p1;
         GtkWidget       *hand_p2;
         hand_p1 = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
@@ -30,7 +30,7 @@
             }
     }
 
-    void on_buy_card_clicked(){      //clicar no botao de comprar carta
+    void on_buy_card_clicked(){    
         if( player[active].buy_card == 0 ){
             if( deck_amount_cards == -1) {
                 generic_log( "Cartas do baralho acabou" );
@@ -132,7 +132,7 @@
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR DUAS CARTAS\nPOR TURNO" );
     }
 
-    void on_pass_turn_clicked(){        //clicar no botao passar a vez do jogador
+    void on_pass_turn_clicked(){      
             if( player[active].discard_card == 1 ){
                 player[active].buy_card = 0;
                 player[active].discard_card = 0;
@@ -143,7 +143,7 @@
             } else set_dialog( "VOCÊ NÃO PODE PASSAR O TURNO\nSEM DESCARTAR NENHUMA CARTA" );
     }
 
-    void on_buy_dead_clicked(){         //clicar comprar morto
+    void on_buy_dead_clicked(){         
         int count_cards = list_count_size( player[active].hand , 1 );
             if( player[active].buy_dead == 0 && count_cards == -1 ){
                 if( deaths[0] == 0 ){
@@ -168,7 +168,7 @@
             } else set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA COMPRAR O MORTO");
     }
 
-    void on_card_buy_clicked(){         //dialog botao comprar carta
+    void on_card_buy_clicked(){       
         GtkWidget          *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
         generic_log_with_name( player[active].name, "Comprou a carta que pegou do baralho" );
@@ -214,7 +214,7 @@
             }
     }
 
-    void add_card_on_hand(){        //mostra visualmente a carta adicionada a mão
+    void add_card_on_hand(){       
         int count_cards = list_count_size ( player[active].hand, 0 ); 
         GtkGrid          *hand;
             if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
@@ -225,7 +225,7 @@
             else if ( count_cards > 18 ) add_card_size_config( hand, count_cards, 54, 74 );
     }
 
-    void check_size_render(){       //verifcar para renderizar
+    void check_size_render(){      
         int count_cards = list_count_size( player[active].hand, 0 );
             if( count_cards < 12 ) size_configs( 114, 158 );
             else if( count_cards > 11 && count_cards < 15) size_configs( 90, 125 );
@@ -234,7 +234,7 @@
             
     }
 
-    void size_configs( int width , int height ){        //tamanho das cartas renderizada na tela
+    void size_configs( int width , int height ){       
         int count_grid = 0;
         int count_grid2 = 0;
         GtkGrid          *hand;
@@ -280,7 +280,7 @@
             
     }
 
-    void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height ){      //verificar tamanho da carta ao adicionar na mao
+    void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height ){      
         GtkWidget       *image;
         GdkPixbuf      *pixbuf;
         char location[50];
@@ -291,9 +291,9 @@
         image = gtk_image_new_from_pixbuf( pixbuf );
             gtk_widget_set_name( image, deck[deck_amount_cards].widget );
             gtk_widget_show(image);
-                if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
-                    if( active == 0 ) {     //verificar qual player é
-                        gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     //add na segunda coluna
+                if( count_cards > 24 ){     
+                    if( active == 0 ) {     
+                        gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );    
                         count_row2_p1++;
                     } else {
                         gtk_grid_attach( hand, image, count_row2_p2, 1, 1, 1 );

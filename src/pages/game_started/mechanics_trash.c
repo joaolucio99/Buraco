@@ -2,7 +2,7 @@
 
     int row_trash[5] = { 0, 0, 0, 0, 0 };
 
-    void on_card_trash_clicked(){       //dialog botao jogar carta pro lixo
+    void on_card_trash_clicked(){       
         GtkWidget          *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
         generic_log_with_name( player[active].name, "Descartou a carta que pegou do baralho" );
@@ -53,19 +53,19 @@
             }
     }
 
-    void on_trash_back_clicked(){       //fechar lixo
+    void on_trash_back_clicked(){      
         GtkWidget           *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "trash" ));
             gtk_widget_hide( dialog );
     }
 
-    void on_see_trash_clicked(){        //ver lixo
+    void on_see_trash_clicked(){     
         GtkWidget           *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "trash" ));
             gtk_widget_show( dialog );
     }
 
-    void add_card_trash_view(){         //adcionando carta ao lixo visualmente
+    void add_card_trash_view(){        
         GtkGrid         *trash_grid;
         GtkWidget       *image;
         GdkPixbuf       *pixbuf;
@@ -99,7 +99,7 @@
                 }
     }
 
-    void on_buy_trash_clicked(){        //comprar todas cartas lixo
+    void on_buy_trash_clicked(){      
         GtkWidget           *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "trash" ));
         if( player[active].buy_card == 0 ){
@@ -113,7 +113,7 @@
                         if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
                         else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
                     header *aux = trash->start;
-                        while( aux != NULL ){   //adicionando cartas do lixo a lista da mao do player atual
+                        while( aux != NULL ){   
                             aux->l_card.active_on.trash = 0;
                             aux->l_card.active_on.hand = 1;
                             list_insert( player[active].hand, aux->l_card );
@@ -124,7 +124,7 @@
                                 else if ( count_hand > 18 ) add_card_trash_to_hand( count_hand, hand , 54 , 74, aux->l_card.image, aux->l_card.widget );
                             aux = aux->next;
                         }
-                        while( count_trash != -1 ){     //removendo cartas da lista e visualmente do lixo
+                        while( count_trash != -1 ){     
                             cards temp;
                                 del_card_trash( count_trash );
                                 list_remove( trash, &temp );
@@ -137,7 +137,7 @@
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR O LIXO,\nPOIS JA COMPROU DO MONTE" );
     }
 
-    void del_card_trash( int count_trash ){      //deletar a carta visualmente do lixo
+    void del_card_trash( int count_trash ){     
         GtkWidget       *image;
         GtkGrid         *trash_grid;
         trash_grid = GTK_GRID( gtk_builder_get_object( builder, "trash_grid" ));
@@ -167,7 +167,7 @@
             }
     }
 
-    void add_card_trash_to_hand( int count_cards , GtkGrid *hand, int width, int height, char *location_trash, char *widget_name){      //adicionar carta do lixo a mao
+    void add_card_trash_to_hand( int count_cards , GtkGrid *hand, int width, int height, char *location_trash, char *widget_name){      
         GtkWidget       *image;
         GdkPixbuf      *pixbuf;
         char location[50];
@@ -178,9 +178,9 @@
         image = gtk_image_new_from_pixbuf( pixbuf );
             gtk_widget_set_name( image, widget_name );
             gtk_widget_show(image);
-                if( count_cards > 24 ){     //verificar se tem mais de 24 cartas
-                    if( active == 0 ) {     //verificar qual player é
-                        gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     //add na segunda linha
+                if( count_cards > 24 ){     
+                    if( active == 0 ) {     
+                        gtk_grid_attach( hand, image, count_row2_p1, 1, 1, 1 );     
                         count_row2_p1++;
                     } else {
                         gtk_grid_attach( hand, image, count_row2_p2, 1, 1, 1 );

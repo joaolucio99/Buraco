@@ -1,9 +1,9 @@
 #include "../../lib/tools/dialogs.h"
 
-    void on_dg_close_clicked(){        //botão de fechar o dialog de nome jogador
+    void on_dg_close_clicked(){        
         GtkWidget           *dialog;       
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "dialog" ));
-        gtk_widget_hide( dialog );       //escondendo o dialog
+        gtk_widget_hide( dialog );       
     }
 
     void set_dialog( char *text ){

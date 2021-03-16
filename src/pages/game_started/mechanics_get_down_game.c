@@ -1,8 +1,8 @@
 #include "../../../lib/pages/game_started/mechanics_get_down_game.h"
 
-    int comb_amount_cards = 3; //contador de labels para player add cartas no jogo
+    int comb_amount_cards = 3;
 
-    void on_button_get_down_game_clicked(){     //abrir botao descer novo jogo
+    void on_button_get_down_game_clicked(){     
         GtkWidget           *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "new_game" ));
             for ( int i = 0; i < comb_amount_cards; i++ ){
@@ -11,13 +11,13 @@
             gtk_widget_show( dialog );
     }
 
-    void on_adjustment1_button_game_value_changed(){        //quando o valor de cartas a descer e alterado
+    void on_adjustment1_button_game_value_changed(){        
         GtkSpinButton *spin_button;
         GtkContainer  *container;
         container = GTK_CONTAINER( gtk_builder_get_object( builder, "view_dialog" ));
         spin_button = GTK_SPIN_BUTTON( gtk_builder_get_object( builder, "change_n_cards" ));
         int value =  (int)gtk_spin_button_get_value ( spin_button );       
-            if( value > comb_amount_cards ){        //verificar se vai adicionar ou remover os campos de selecionar carta
+            if( value > comb_amount_cards ){       
                 GtkWidget   *new_combox_box_text;
                 char selector_combo_box[50],temp_number[3];
                     strcpy( selector_combo_box , "combo_card_");
@@ -42,7 +42,7 @@
             }
     }
 
-    void get_labels_info( int number ){                 //pegando as carta para deixar o player selecionar
+    void get_labels_info( int number ){               
         GtkComboBoxText        *combo_box_text;
         GtkComboBox            *combo_box;
         header *aux = player[active].hand->start;
@@ -63,12 +63,12 @@
                 gtk_combo_box_set_active( combo_box, 0 );
     }
 
-    void on_get_down_back_clicked(){        //dialog botao de voltar
+    void on_get_down_back_clicked(){        
         GtkWidget           *dialog;
         GtkComboBoxText        *combo_box_text;
         char selector_combo_box[50],temp_number[3];
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "new_game" ));
-        for ( int i = 0; i < comb_amount_cards; i++ ){      //removendo as infos das cartas do label
+        for ( int i = 0; i < comb_amount_cards; i++ ){   
                 strcpy( selector_combo_box , "combo_card_");
                 sprintf( temp_number, "%i", i );
                 strcat( selector_combo_box , temp_number );
@@ -78,8 +78,7 @@
             gtk_widget_hide( dialog );     
     }
 
-    void on_get_down_card_clicked(){        //dialog botao de descer jogo
-        //inico etapa pegando o nome das cartas que o jogador que descer jogo
+    void on_get_down_card_clicked(){        
         GtkComboBox        *combo_box;
         char *text_select[comb_amount_cards];   
         char selector_combo_box[50],temp_number[3];
@@ -90,11 +89,8 @@
                 combo_box =  GTK_COMBO_BOX( gtk_builder_get_object( builder, selector_combo_box ));
                 text_select[z] = (gchar*)gtk_combo_box_get_active_id (combo_box);
             }
-        //fim da etapa      
-
-        //inicio etapa pegar as cartas que é pra ser decidas pro jogo  
         cards cards_to_check[comb_amount_cards];
-            for( int l = 0; l < comb_amount_cards; l++ ){   // for para comparar cada carta escolhida para descer pro jogo
+            for( int l = 0; l < comb_amount_cards; l++ ){   
                 header *aux = player[active].hand->start;
                     while( aux != NULL ){
                         if( strcmp( text_select[l], aux->l_card.widget ) == 0) {
@@ -103,9 +99,6 @@
                         } else aux = aux->next;
                     }
                 }
-        //fim da etapa
-
-        //inicio checagem se pode descer cartas
             int controller = cards_can_come_down( cards_to_check, comb_amount_cards );
                 if( controller == 0 ) { 
                     player[active].n_games++;
@@ -116,22 +109,21 @@
                 }
                 if( controller == 1 ) set_dialog( "VOCÊ NÃO PODE DESCER,\nJOGO INVÁLIDO" );
                 if( controller == -100 ) set_dialog( "VOCÊ NÃO PODE USAR MAIS\nQUE UM CORINGA" );
-            
     }
 
-    void cards_on_table( cards _cards_[], int amount ){     //fazer que o jogo selecionado seja removido da mao e seja adicionado na lista jogo
+    void cards_on_table( cards _cards_[], int amount ){     
         GtkGrid            *hand;
-        int count_grid = list_count_size( player[active].hand, 0 );     //quantas cartas tem na mao
+        int count_grid = list_count_size( player[active].hand, 0 );     
             if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
             else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
-            for( int l = 0; l < amount; l++ ){  //quantas cartas serao selecionadas
-                for( int z = 0; z < count_grid ; z++ ){     //inicio percorrer as linhas para selecionar a carta
+            for( int l = 0; l < amount; l++ ){  
+                for( int z = 0; z < count_grid ; z++ ){   
                     if( z < 24 ) {
                         GtkWidget       *image;
                         image = gtk_grid_get_child_at( hand, z, 0 );
                         char *current_card_widget_name;
-                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                            if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){   //se a carta for igual
+                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );  
+                            if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){  
                                 int position_card;
                                     list_search_key( player[active].hand, _cards_[l], &position_card );
                                 cards temp;
@@ -142,7 +134,7 @@
                                 list_insert( player[active].games[player[active].n_games], temp );
                                     hand_to_table( temp , player[active].n_games );
                             }
-                    } else{     //tiver mais de uma linha de cartas
+                    } else{     
                         int count_p_rows;
                         if( active == 0 ) count_p_rows = count_row2_p1;
                         else count_p_rows = count_row2_p2;
@@ -150,8 +142,8 @@
                             GtkWidget       *image;
                             image = gtk_grid_get_child_at( hand, k, 1 );
                             char *current_card_widget_name;
-                            current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                                if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){   //se a carta for igual
+                            current_card_widget_name = (gchar*)gtk_widget_get_name( image ); 
+                                if( strcmp( _cards_[l].widget, current_card_widget_name ) == 0 ){ 
                                     int position_card;
                                         list_search_key( player[active].hand, _cards_[l], &position_card );
                                     cards temp;
@@ -170,7 +162,7 @@
             }
     }
 
-    void hand_to_table( cards temp  , int choice ){     // descer carta da para o jogo correto na mesa
+    void hand_to_table( cards temp  , int choice ){     
         GtkGrid         *table_grid;
         GtkWidget       *image;
         GdkPixbuf       *pixbuf;
@@ -208,41 +200,41 @@
             }
     }
 
-    int cards_can_come_down( cards cards_[] , int amount ){     //função verificar se os jogos podem descer
+    int cards_can_come_down( cards cards_[] , int amount ){     
         int result = 0, joker, joker_position, joker_amount = 0;
-            for( int i = 0; i < amount; i++ ){      // verificando se há coringas e quantos
+            for( int i = 0; i < amount; i++ ){     
                 if( cards_[i].joker == 1 ){
                     joker_amount++;
                     joker = 1;
                 }
             }
 
-            if( cards_[1].joker == 1 ){      //verificar se o dois está como coringa ou não na posição dois
+            if( cards_[1].joker == 1 ){    
                 if( cards_[1].number + 1 == cards_[2].number && cards_[1].suit == cards_[2].suit && cards_[1].number - 1 == cards_[0].number && cards_[1].suit == cards_[0].suit || cards_[2].joker == 1 || cards_[0].joker == 1){
                     cards_[1].joker = 0;
                     joker_amount--;
                 }
             }
 
-            if( cards_[0].joker == 1 ){     //verificando se o 2 no inicio e um coringa ou carta de jogo
+            if( cards_[0].joker == 1 ){     
                 if( cards_[1].number == 3 && cards_[0].suit == cards_[1].suit || cards_[1].joker == 1){
                     cards_[0].joker = 0;
                     joker_amount--;
                 }
             }
 
-            if( joker_amount > 1 ){     //verificando se existe mais de um coringa
+            if( joker_amount > 1 ){     
                 return -100; 
             }
 
-            for( int i = 0; i < amount; i++ ){  //pegando a posição do coringa
+            for( int i = 0; i < amount; i++ ){  
                 if( cards_[i].joker == 1 ){
                     joker_position = i;
                     break;
                 } 
             }
 
-            if( joker_amount == 1 ){    // tem coringa
+            if( joker_amount == 1 ){    
                 for( int i = 0; i < amount-1; i++ ){
                     if( cards_[i].number + 1 == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].joker == 1 || cards_[i+1].joker == 1 && i != amount-2 || cards_[i].number == 13 && cards_[i+1].number == 1 ) result = 0;
                     else if( i == amount-2 ){
@@ -254,7 +246,7 @@
                     }
                     else return 1;
                 }
-            } else{     //nao tem coringa
+            } else{     
                 for( int i = 0; i < amount-1; i++ ){
                     if( (cards_[i].number + 1) == cards_[i+1].number && cards_[i].suit == cards_[i+1].suit || cards_[i].number == 13 && cards_[i+1].number == 1 ) result = 0;
                     else return 1;

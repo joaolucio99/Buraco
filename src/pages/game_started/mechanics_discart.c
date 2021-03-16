@@ -22,7 +22,7 @@
         } else set_dialog( "VOCÊ NÃO PODE DESCARTAR SEM QUE\nCOMPRE CARTA" );
     }
 
-    void on_discart_card_clicked(){     //dialog botao discartar
+    void on_discart_card_clicked(){     
         if( player[active].discard_card == 0 ){
             generic_log_with_name( player[active].name, "Descartou uma carta da mão" );
             GtkComboBox        *combo_box;
@@ -34,16 +34,16 @@
             dialog = GTK_WIDGET( gtk_builder_get_object( builder, "discart" ));
             combo_box_text =  GTK_COMBO_BOX_TEXT( gtk_builder_get_object( builder, "cards_list_discart" ));
             combo_box =  GTK_COMBO_BOX( gtk_builder_get_object( builder, "cards_list_discart" ));
-            text_select = (gchar*)gtk_combo_box_get_active_id (combo_box);      // nome da carta que a pessoa quer descartar    
+            text_select = (gchar*)gtk_combo_box_get_active_id (combo_box);         
                 if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
                 else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
-                for( int z = 0; z < count_grid ; z++ ){     //inicio percorrer as linhas para selecionar a carta
+                for( int z = 0; z < count_grid ; z++ ){     
                     if( z < 24 ) {
                         GtkWidget       *image;
                         image = gtk_grid_get_child_at( hand, z, 0 );
                         char *current_card_widget_name;
-                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                            if( strcmp( text_select, current_card_widget_name ) == 0 ){   //se a carta for igual
+                        current_card_widget_name = (gchar*)gtk_widget_get_name( image );   
+                            if( strcmp( text_select, current_card_widget_name ) == 0 ){   
                                 header *aux = player[active].hand->start;
                                     while( aux != NULL ){
                                         if( strcmp( text_select, aux->l_card.widget ) == 0) break;
@@ -63,7 +63,7 @@
                                     gtk_widget_hide( dialog );
                                 return;
                             }
-                    } else{     //tiver mais de uma linha de cartas
+                    } else{     
                         int count_p_rows;
                         if( active == 0 ) count_p_rows = count_row2_p1;
                         else count_p_rows = count_row2_p2;
@@ -71,8 +71,8 @@
                             GtkWidget       *image;
                             image = gtk_grid_get_child_at( hand, k, 1 );
                             char *current_card_widget_name;
-                            current_card_widget_name = (gchar*)gtk_widget_get_name( image );   //nome da carta atual do grid
-                                if( strcmp( text_select, current_card_widget_name ) == 0 ){   //se a carta for igual
+                            current_card_widget_name = (gchar*)gtk_widget_get_name( image ); 
+                                if( strcmp( text_select, current_card_widget_name ) == 0 ){ 
                                     header *aux = player[active].hand->start;
                                         while( aux != NULL ){
                                             if( strcmp( text_select, aux->l_card.widget ) == 0) break;
@@ -100,7 +100,7 @@
         } else set_dialog( "VOCÊ NÃO PODE DESCARTAR MAIS\nQUE UMA CARTA" ); 
     }  
 
-    void hand_to_trash( cards temp ){       //enviar carta pro lixo
+    void hand_to_trash( cards temp ){       
         GtkGrid         *trash_grid;
         GtkWidget       *image;
         GdkPixbuf       *pixbuf;
@@ -134,7 +134,7 @@
                 }
     }
 
-    void set_card_name_cb_box( int suit , int number, char *card_name ){    //formar a string para definir nome da carta
+    void set_card_name_cb_box( int suit , int number, char *card_name ){    
         char temp[50],temp_number[3],number_[3];
         sprintf( temp_number, "%i", number ); 
                 if( number == 1) strcpy( number_, "A" );
@@ -151,7 +151,7 @@
             strcpy( card_name, temp );
     }   
 
-    void on_discart_back_clicked(){     //dialog botao voltar
+    void on_discart_back_clicked(){     
         GtkWidget          *dialog;
         GtkComboBoxText        *combo_box;
         combo_box =  GTK_COMBO_BOX_TEXT( gtk_builder_get_object( builder, "cards_list_discart" ));

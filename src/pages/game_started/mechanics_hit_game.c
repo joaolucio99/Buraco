@@ -1,9 +1,9 @@
 #include "../../../lib/pages/game_started/mechanics_hit_game.h"
 
-    void on_win_game_clicked(){         //clicar no botao de bater   
+    void on_win_game_clicked(){          
             if( player[active].n_games+1 > 0 ){
                 int clean_canasta = 1;
-                clean_canasta = check_canasta();    //verificar se tem canastra limpa
+                clean_canasta = check_canasta();   
                     if( clean_canasta == 0 || player[active].buy_dead == 1 && list_count_size( player[active].hand, 1 ) == -1 ){
                         generic_log_with_name( player[active].name, "Bateu" );
                         GtkStack    *stack;
@@ -18,7 +18,7 @@
             } else set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA BATER");
     }
 
-    void set_display_infos(){       //mostrar na tela o vencedor e perdedor
+    void set_display_infos(){       
         GtkImage           *image_loser;
         GtkImage           *image_winner;
         GtkLabel           *label_name_loser; 
@@ -58,7 +58,7 @@
             }
     }
 
-    void count_game_score( int i ){     //contagem dos pontos de todos jogos
+    void count_game_score( int i ){    
         int hands_count = 0;
         for( int z = 0; z < player[i].n_games+1; z++ ){
             int cards_in_game = list_count_size( player[i].games[z] , 0 );
@@ -80,7 +80,7 @@
         }
     }
 
-    void math_score( int i, int z, int value, int *hands_count, int canasta ){  //contagem dos pontos de cada jogo
+    void math_score( int i, int z, int value, int *hands_count, int canasta ){  
         header *aux = player[i].games[z]->start;
         int value_cards = 0;
             while( aux != NULL ){
@@ -104,7 +104,7 @@
         player[i].score = player[i].score + total_value;
     }
 
-    int check_joker_hit( list *cards_to_check ){        //checar se a coringa no jogo
+    int check_joker_hit( list *cards_to_check ){        
         header *aux = cards_to_check->start;
             while( aux != NULL ){
                 if( aux->l_card.joker == 1) return 0;
@@ -113,7 +113,7 @@
         return 1;
     }
 
-    int check_canasta(){   //checar se a canastra e limpa
+    int check_canasta(){   
         for( int i = 0; i < player[active].n_games+1; i++ ){
             int lenght = list_count_size( player[active].games[i] , 0 );
                 if( lenght == 14 ){
@@ -130,7 +130,7 @@
         }
     }
 
-    void check_game_end(){      //checar se o jogo acabou
+    void check_game_end(){     
         if( game_end == 1 ){
             GtkStack    *stack;
             stack = GTK_STACK( gtk_builder_get_object( builder, "all_pages" ) );
@@ -142,7 +142,7 @@
         }
     }
 
-    void on_exit_game_clicked(){        //saindo do jogo e limpando as memorias alocadas
+    void on_exit_game_clicked(){       
         for( int i = 0; i < 2; i++ ){
             for( int z = 0; z < player[i].n_games+1; z++ ){
                 list_free( player[i].games[z] );
@@ -153,7 +153,7 @@
         gtk_main_quit();
     }
 
-    void on_go_to_menu_clicked(){       //voltar para o menu
+    void on_go_to_menu_clicked(){      
         GtkStack    *stack;
         stack = GTK_STACK( gtk_builder_get_object( builder, "all_pages" ) );
             for( int i = 0; i < 2; i++ ){

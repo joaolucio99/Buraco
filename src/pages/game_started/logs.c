@@ -14,7 +14,7 @@
             strcat( final_text, name );
             strcat( final_text, " \n");
         match_log = fopen( "./logs/match_log.txt", "a" );
-            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
+            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );       
         int result = fputs( final_text, match_log );
             if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
             fclose( match_log );
@@ -32,7 +32,7 @@
             strcat( final_text, text );
             strcat( final_text, " \n" );
         match_log = fopen( "./logs/match_log.txt", "a" );
-            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
+            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );       
         int result = fputs( final_text, match_log );
             if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
             fclose( match_log );
@@ -48,7 +48,7 @@
             strcat( final_text, text );
             strcat( final_text, " \n" );
         match_log = fopen( "./logs/match_log.txt", "a" );
-            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
+            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );       
         int result = fputs( final_text, match_log );
             if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
             fclose( match_log );
@@ -67,7 +67,7 @@
                 else strcat( final_text, player[1].name );
             strcat( final_text, " \n" );
         match_log = fopen( "./logs/match_log.txt", "a" );
-            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
+            if( match_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );       
         int result = fputs( final_text, match_log );
             if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
             fclose( match_log );

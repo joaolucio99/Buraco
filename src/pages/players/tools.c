@@ -4,36 +4,36 @@
     char name_player2[16];
     int p_ready[2] = {0,0};
 
-    void on_player1_input_name_changed( GtkEntry *input ){  //
-        sprintf( name_player1, "%s", gtk_entry_get_text( input ));     //pegando as informações digitadas no input de nome
+    void on_player1_input_name_changed( GtkEntry *input ){  
+        sprintf( name_player1, "%s", gtk_entry_get_text( input ));     
     }
 
     void on_player2_input_name_changed( GtkEntry *input ){
         sprintf( name_player2, "%s", gtk_entry_get_text( input ));
     }
 
-    void on_switch_button1_state_set( GtkSwitch *state ){         //alteração estado botao switch player 1
+    void on_switch_button1_state_set( GtkSwitch *state ){        
         p_ready[0] = 0;
         control_inp_names( state, "player1_input_name", name_player1, 0 );
     }
 
-    void on_switch_button2_state_set( GtkSwitch *state ){         //alteração estado botao switch player 2
+    void on_switch_button2_state_set( GtkSwitch *state ){        
         p_ready[1] = 0;
         control_inp_names( state, "player2_input_name", name_player2, 1 );
     }
 
-    void control_inp_names( GtkSwitch *state, char *input_name, char *name_player, int choice){        //controlar os inputs de nomes
+    void control_inp_names( GtkSwitch *state, char *input_name, char *name_player, int choice){        
         GtkWidget           *input_player;
         input_player = GTK_WIDGET( gtk_builder_get_object( builder, input_name ));
-            gtk_widget_unset_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE );      //libeirando a box para edição
-        gboolean act_state = gtk_switch_get_active( state );      //pegando informação switch button
-            if( act_state ){      //verificando estado botao switch
+            gtk_widget_unset_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE );      
+        gboolean act_state = gtk_switch_get_active( state );     
+            if( act_state ){     
                 if( strlen( name_player ) == 0 ){
-                    gtk_switch_set_active( state , FALSE );     //alterando estado switch button
+                    gtk_switch_set_active( state , FALSE );    
                     set_dialog( "VOCÊ NÃO PODE SELECIONAR PRONTO\nSEM UM NOME DEFINIDO" );
                 } else{
                     gtk_switch_set_state( state, TRUE ); 
-                    gtk_widget_set_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE , TRUE );        //travando a caixa de edição de nome       
+                    gtk_widget_set_state_flags( input_player , GTK_STATE_FLAG_INSENSITIVE , TRUE );             
                     p_ready[choice] = 1;    
                 }
             }

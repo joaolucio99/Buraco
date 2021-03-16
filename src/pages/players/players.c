@@ -1,13 +1,13 @@
 #include "../../../lib/pages/players/players.h"
 
-    void on_start_clicked( GtkButton *button, GtkStack *stack ){        //inicar o jogo
-        if( p_ready[0] != 1 || p_ready[1] != 1 ){       //verificando se 2 jogadores estão prontos
+    void on_start_clicked( GtkButton *button, GtkStack *stack ){        
+        if( p_ready[0] != 1 || p_ready[1] != 1 ){       
             set_dialog( "VOCÊ NÃO PODE INICIAR SEM QUE OS\nDOIS JOGADORES ESTEJAM PRONTOS" );
         } else {
-            if( strcmp( name_player1, name_player2 ) == 0 ){        //verificando se os nomes não são iguais
+            if( strcmp( name_player1, name_player2 ) == 0 ){        
                 set_dialog( "VOCÊ NÃO PODE INICIAR COM O NOME\nDOS DOIS JOGADORES IGUAIS" );
             } else {
-                get_players_data( name_player1, name_player2 );        //gerando informações dos players
+                get_players_data( name_player1, name_player2 );        
                 create_player_log();
                 generate_deck();
                 shuffle();
