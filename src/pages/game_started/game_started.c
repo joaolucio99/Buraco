@@ -8,5 +8,6 @@
         set_current_player( player[active].icon, player[active].name );
         check_size_render();
         set_current_hand();
+        check_game_end();
         count_round++;
     }

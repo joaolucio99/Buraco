@@ -6,7 +6,7 @@
     }is_active;
 
     typedef struct cards{
-        int suit, joker, active, number;
+        int suit, joker, active, number, value;
         char image[50], widget[50];
         is_active active_on;
     }cards;
@@ -21,7 +21,7 @@
     }list;
 
     typedef struct players{
-        int score, n_games, buy_card, discard_card;
+        int score, n_games, buy_card, discard_card, buy_dead, hit;
         char name[16],icon[30];
         list *hand;
         list *games[10];

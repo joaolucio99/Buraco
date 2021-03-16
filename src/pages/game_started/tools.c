@@ -4,6 +4,8 @@
     int count_round = 0;    //contadora de rounds
     int count_row2_p1 = 0;      //acessar segunda fileira do grid de cartas
     int count_row2_p2 = 0;      
+    int deaths[2] = { 0, 0 };
+    int game_end = 0;
 
     void set_current_player( char *location, char *name ){      //mostrar na area do player nome e imagem
         GtkImage           *image;
@@ -14,7 +16,7 @@
             gtk_label_set_text( label , name );
     }
 
-    void set_current_hand() {       //renderizar mao do player atual
+    void set_current_hand(){       //renderizar mao do player atual
         GtkWidget       *hand_p1;
         GtkWidget       *hand_p2;
         hand_p1 = GTK_WIDGET( gtk_builder_get_object( builder, "cards_place_p1" ));
@@ -31,19 +33,86 @@
     void on_buy_card_clicked(){      //clicar no botao de comprar carta
         if( player[active].buy_card == 0 ){
             if( deck_amount_cards == -1) {
-                set_dialog( "AS CARTAS ACABARAM" );
-                return;
+                if( deaths[0] == 0 && deaths[1] == 0 ){
+                    if( dead1_amount_cards != -1 ){
+                        GtkImage           *image;
+                        GtkWidget          *dialog;
+                        image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+                        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+                        char location[50];
+                            strcpy( location, "./assets/normal_cards/" );
+                            strcat( location, dead1[dead1_amount_cards].image );
+                            gtk_image_set_from_file( image , location );
+                        player[active].buy_card = 1;
+                            gtk_widget_show( dialog );
+                    } else if( dead1_amount_cards == -1 && dead2_amount_cards != -1  ){
+                        GtkImage           *image;
+                        GtkWidget          *dialog;
+                        image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+                        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+                        char location[50];
+                            strcpy( location, "./assets/normal_cards/" );
+                            strcat( location, dead2[dead2_amount_cards].image );
+                            gtk_image_set_from_file( image , location );
+                        player[active].buy_card = 1;
+                            gtk_widget_show( dialog );
+                    } else{
+                        set_dialog( "AS CARTAS ACABARAM" );
+                        game_end = 1;
+                        return;
+                    }
+                } else if( deaths[0] == 0 && deaths[1] == 1 ){
+                    if( dead1_amount_cards != -1 ){
+                        GtkImage           *image;
+                        GtkWidget          *dialog;
+                        image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+                        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+                        char location[50];
+                            strcpy( location, "./assets/normal_cards/" );
+                            strcat( location, dead1[dead1_amount_cards].image );
+                            gtk_image_set_from_file( image , location );
+                        player[active].buy_card = 1;
+                            gtk_widget_show( dialog );
+                    } else{
+                        set_dialog( "AS CARTAS ACABARAM" );
+                        game_end = 1;
+                        return;
+                    }
+                } else if( deaths[0] == 1 && deaths[1] == 0 ){
+                    if( dead2_amount_cards != -1 ){
+                        GtkImage           *image;
+                        GtkWidget          *dialog;
+                        image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+                        dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+                        char location[50];
+                            strcpy( location, "./assets/normal_cards/" );
+                            strcat( location, dead2[dead2_amount_cards].image );
+                            gtk_image_set_from_file( image , location );
+                        player[active].buy_card = 1;
+                            gtk_widget_show( dialog );
+                    } else{
+                        set_dialog( "AS CARTAS ACABARAM" );
+                        game_end = 1;
+                        return;
+                    }
+                } else{
+                    set_dialog( "AS CARTAS ACABARAM" );
+                    game_end = 1;
+                    return;
+                }            
+            } 
+            else{
+                GtkImage           *image;
+                GtkWidget          *dialog;
+                image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
+                dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+                char location[50];
+                    strcpy( location, "./assets/normal_cards/" );
+                    strcat( location, deck[deck_amount_cards].image );
+                    gtk_image_set_from_file( image , location );
+                player[active].buy_card = 1;
+                    gtk_widget_show( dialog );
             }
-            GtkImage           *image;
-            GtkWidget          *dialog;
-            image = GTK_IMAGE( gtk_builder_get_object( builder, "img_cart_purchased" ));
-            dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
-            char location[50];
-                strcpy( location, "./assets/normal_cards/" );
-                strcat( location, deck[deck_amount_cards].image );
-                gtk_image_set_from_file( image , location );
-            player[active].buy_card = 1;
-                gtk_widget_show( dialog );
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR DUAS CARTAS\nPOR TURNO" );
     }
 
@@ -57,19 +126,72 @@
             } else set_dialog( "VOCÊ NÃO PODE PASSAR O TURNO\nSEM DESCARTAR NENHUMA CARTA" );
     }
 
-    void on_win_game_clicked(){         //clicar no botao de bater
-        gtk_main_quit();
+    void on_buy_dead_clicked(){         //clicar comprar morto
+        int count_cards = list_count_size( player[active].hand , 1 );
+            if( player[active].buy_dead == 0 && count_cards == -1 ){
+                if( deaths[0] == 0 ){
+                    deaths[0] = 1;
+                        for( int i = 0; i < 11; i++ ){
+                            list_insert( player[active].hand, dead1[i] );
+                        }
+                    player[active].buy_dead = 1;
+                    check_size_render();
+                } else if( deaths[0] != 0 && deaths[1] == 0 ){
+                    deaths[1] = 1;
+                        for( int i = 0; i < 11; i++ ){
+                            list_insert( player[active].hand, dead2[i] );
+                        }
+                    player[active].buy_dead = 1;
+                    check_size_render();
+                } else{
+                    set_dialog("NÃO TEM MORTOS PARA COMPRAR");
+                }
+            } else set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA COMPRAR O MORTO");
     }
 
     void on_card_buy_clicked(){         //dialog botao comprar carta
         GtkWidget          *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
-        deck[deck_amount_cards].active = 1;
-        deck[deck_amount_cards].active_on.hand = 1;
-            list_insert( player[active].hand, deck[deck_amount_cards] );
-            add_card_on_hand();
-        deck_amount_cards--;
-            gtk_widget_hide( dialog );
+            if( deck_amount_cards == -1) {
+                if( deaths[0] == 0 && deaths[1] == 0 ){
+                    if( dead1_amount_cards != -1 ){
+                        dead1[dead1_amount_cards].active = 1;
+                        dead1[dead1_amount_cards].active_on.hand = 1;
+                            list_insert( player[active].hand, dead1[dead1_amount_cards] );
+                            add_card_on_hand();
+                        dead1_amount_cards--;
+                            gtk_widget_hide( dialog );
+                    } else if( dead1_amount_cards == -1 && dead2_amount_cards != -1  ){
+                        dead2[dead2_amount_cards].active = 1;
+                        dead2[dead2_amount_cards].active_on.hand = 1;
+                            list_insert( player[active].hand, dead2[dead2_amount_cards] );
+                            add_card_on_hand();
+                        dead2_amount_cards--;
+                            gtk_widget_hide( dialog );
+                    }
+                } else if( deaths[0] == 0 && deaths[1] == 1 ){
+                    dead1[dead1_amount_cards].active = 1;
+                    dead1[dead1_amount_cards].active_on.hand = 1;
+                        list_insert( player[active].hand, dead1[dead1_amount_cards] );
+                        add_card_on_hand();
+                    dead1_amount_cards--;
+                        gtk_widget_hide( dialog );
+                } else if( deaths[0] == 1 && deaths[1] == 0 ){
+                    dead2[dead2_amount_cards].active = 1;
+                    dead2[dead2_amount_cards].active_on.hand = 1;
+                        list_insert( player[active].hand, dead2[dead2_amount_cards] );
+                        add_card_on_hand();
+                    dead2_amount_cards--;
+                        gtk_widget_hide( dialog );
+                }
+            } else{
+                deck[deck_amount_cards].active = 1;
+                deck[deck_amount_cards].active_on.hand = 1;
+                    list_insert( player[active].hand, deck[deck_amount_cards] );
+                    add_card_on_hand();
+                deck_amount_cards--;
+                    gtk_widget_hide( dialog );
+            }
     }
 
     void add_card_on_hand(){        //mostra visualmente a carta adicionada a mão
@@ -101,7 +223,8 @@
         header *aux = player[active].hand->start;
             if( active == 0 ) hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p1" ));
             else hand = GTK_GRID( gtk_builder_get_object( builder, "cards_place_p2" ));
-            while( aux != NULL ){
+            if( aux != NULL ){
+                while( aux != NULL ){
                 char location[50];
                     strcpy( location, "./assets/normal_cards/" );
                     strcat( location, aux->l_card.image );
@@ -129,7 +252,12 @@
                             count_grid++;
                         }
                 aux = aux->next;
+                }
+            } else{
+                gtk_grid_remove_row( hand, 0 );
+                gtk_grid_remove_row( hand, 1 );
             }
+            
     }
 
     void add_card_size_config( GtkGrid *hand, int count_cards, int width, int height ){      //verificar tamanho da carta ao adicionar na mao
