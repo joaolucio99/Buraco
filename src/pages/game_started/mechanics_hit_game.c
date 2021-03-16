@@ -5,17 +5,17 @@
                 int clean_canasta = 1;
                 clean_canasta = check_canasta();    //verificar se tem canastra limpa
                     if( clean_canasta == 0 || player[active].buy_dead == 1 && list_count_size( player[active].hand, 1 ) == -1 ){
+                        generic_log_with_name( player[active].name, "Bateu" );
                         GtkStack    *stack;
                         stack = GTK_STACK( gtk_builder_get_object( builder, "all_pages" ) );
                         player[active].hit = 1;
                             count_game_score( 0 );
                             count_game_score( 1 );
                             set_display_infos();
+                            end_game_log();
                             gtk_stack_set_visible_child_name ( stack, "score_page" );
-                    } 
-            } else{
-                set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA BATER");
-            }
+                    } else set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA BATER");
+            } else set_dialog("VOCÊ NÃO ESTÁ APTO\nPARA BATER");
     }
 
     void set_display_infos(){       //mostrar na tela o vencedor e perdedor
@@ -104,7 +104,7 @@
         player[i].score = player[i].score + total_value;
     }
 
-    int check_joker_hit( list *cards_to_check ){
+    int check_joker_hit( list *cards_to_check ){        //checar se a coringa no jogo
         header *aux = cards_to_check->start;
             while( aux != NULL ){
                 if( aux->l_card.joker == 1) return 0;
@@ -126,7 +126,7 @@
                             }
                         }
                     return 0; 
-                }
+                } else return 1;
         }
     }
 
@@ -137,6 +137,31 @@
                 count_game_score( 0 );
                 count_game_score( 1 );
                 set_display_infos();
+                end_game_log();
                 gtk_stack_set_visible_child_name ( stack, "score_page" );
         }
+    }
+
+    void on_exit_game_clicked(){        //saindo do jogo e limpando as memorias alocadas
+        for( int i = 0; i < 2; i++ ){
+            for( int z = 0; z < player[i].n_games+1; z++ ){
+                list_free( player[i].games[z] );
+            }
+            list_free( player[i].hand );
+        }
+        list_free( trash );
+        gtk_main_quit();
+    }
+
+    void on_go_to_menu_clicked(){       //voltar para o menu
+        GtkStack    *stack;
+        stack = GTK_STACK( gtk_builder_get_object( builder, "all_pages" ) );
+            for( int i = 0; i < 2; i++ ){
+                for( int z = 0; z < player[i].n_games+1; z++ ){
+                    list_free( player[i].games[z] );
+                }
+                list_free( player[i].hand );
+            }
+            list_free( trash );
+            gtk_stack_set_visible_child_name ( stack, "init_page" );
     }

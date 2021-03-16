@@ -4,8 +4,8 @@
     int count_round = 0;    //contadora de rounds
     int count_row2_p1 = 0;      //acessar segunda fileira do grid de cartas
     int count_row2_p2 = 0;      
-    int deaths[2] = { 0, 0 };
-    int game_end = 0;
+    int deaths[2] = { 0, 0 };       //controle ver se mortos foram comprados
+    int game_end = 0;       //controle se jogo acabou
 
     void set_current_player( char *location, char *name ){      //mostrar na area do player nome e imagem
         GtkImage           *image;
@@ -33,7 +33,9 @@
     void on_buy_card_clicked(){      //clicar no botao de comprar carta
         if( player[active].buy_card == 0 ){
             if( deck_amount_cards == -1) {
+                generic_log( "Cartas do baralho acabou" );
                 if( deaths[0] == 0 && deaths[1] == 0 ){
+                    generic_log( "Morto 1 e 2 passaram para o baralho" );
                     if( dead1_amount_cards != -1 ){
                         GtkImage           *image;
                         GtkWidget          *dialog;
@@ -56,12 +58,16 @@
                             gtk_image_set_from_file( image , location );
                         player[active].buy_card = 1;
                             gtk_widget_show( dialog );
+                            generic_log_with_name( player[active].name, "comprou uma carta" );
                     } else{
                         set_dialog( "AS CARTAS ACABARAM" );
                         game_end = 1;
+                        generic_log( "JOGO FINALIZADO, AS CARTAS ACABARAM" );
+                        check_game_end();
                         return;
                     }
                 } else if( deaths[0] == 0 && deaths[1] == 1 ){
+                    generic_log( "Morto 1 passou para o baralho" );
                     if( dead1_amount_cards != -1 ){
                         GtkImage           *image;
                         GtkWidget          *dialog;
@@ -73,12 +79,16 @@
                             gtk_image_set_from_file( image , location );
                         player[active].buy_card = 1;
                             gtk_widget_show( dialog );
+                            generic_log_with_name( player[active].name, "comprou uma carta" );
                     } else{
                         set_dialog( "AS CARTAS ACABARAM" );
                         game_end = 1;
+                        generic_log( "JOGO FINALIZADO, AS CARTAS ACABARAM" );
+                        check_game_end();
                         return;
                     }
                 } else if( deaths[0] == 1 && deaths[1] == 0 ){
+                    generic_log( "Morto 2 passou para o baralho" );
                     if( dead2_amount_cards != -1 ){
                         GtkImage           *image;
                         GtkWidget          *dialog;
@@ -90,14 +100,19 @@
                             gtk_image_set_from_file( image , location );
                         player[active].buy_card = 1;
                             gtk_widget_show( dialog );
+                            generic_log_with_name( player[active].name, "comprou uma carta" );
                     } else{
                         set_dialog( "AS CARTAS ACABARAM" );
                         game_end = 1;
+                        generic_log( "JOGO FINALIZADO, AS CARTAS ACABARAM" );
+                        check_game_end();
                         return;
                     }
                 } else{
                     set_dialog( "AS CARTAS ACABARAM" );
                     game_end = 1;
+                    generic_log( "JOGO FINALIZADO, AS CARTAS ACABARAM" );
+                    check_game_end();
                     return;
                 }            
             } 
@@ -112,6 +127,7 @@
                     gtk_image_set_from_file( image , location );
                 player[active].buy_card = 1;
                     gtk_widget_show( dialog );
+                    generic_log_with_name( player[active].name, "Comprou uma carta" );
             }
         } else set_dialog( "VOCÊ NÃO PODE COMPRAR DUAS CARTAS\nPOR TURNO" );
     }
@@ -120,6 +136,7 @@
             if( player[active].discard_card == 1 ){
                 player[active].buy_card = 0;
                 player[active].discard_card = 0;
+                generic_log_with_name( player[active].name, "Passou a vez" );
                     if( active == 0 ) active=1;
                     else active=0;
                 turn();
@@ -130,6 +147,7 @@
         int count_cards = list_count_size( player[active].hand , 1 );
             if( player[active].buy_dead == 0 && count_cards == -1 ){
                 if( deaths[0] == 0 ){
+                    generic_log_with_name( player[active].name, "Comprou o morto" );
                     deaths[0] = 1;
                         for( int i = 0; i < 11; i++ ){
                             list_insert( player[active].hand, dead1[i] );
@@ -137,6 +155,7 @@
                     player[active].buy_dead = 1;
                     check_size_render();
                 } else if( deaths[0] != 0 && deaths[1] == 0 ){
+                    generic_log_with_name( player[active].name, "Comprou o morto" );
                     deaths[1] = 1;
                         for( int i = 0; i < 11; i++ ){
                             list_insert( player[active].hand, dead2[i] );
@@ -152,6 +171,7 @@
     void on_card_buy_clicked(){         //dialog botao comprar carta
         GtkWidget          *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
+        generic_log_with_name( player[active].name, "Comprou a carta que pegou do baralho" );
             if( deck_amount_cards == -1) {
                 if( deaths[0] == 0 && deaths[1] == 0 ){
                     if( dead1_amount_cards != -1 ){

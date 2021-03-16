@@ -6,4 +6,6 @@
 
     void on_start_clicked();
 
+    void log_start_round();
+
 #endif

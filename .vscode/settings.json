@@ -12,6 +12,7 @@
         "game_start.h": "c",
         "mechanics_trash.h": "c",
         "mechanics_edit_game.h": "c",
-        "mechanics_hit_game.h": "c"
+        "mechanics_hit_game.h": "c",
+        "logs.h": "c"
     }
 }

@@ -1,6 +1,6 @@
 #include "../../lib/tools/list.h"
 
-    list* new_list(){
+    list* new_list(){   //
         list *l=(list*)malloc(sizeof(list));
         l->start=NULL;
         return l;

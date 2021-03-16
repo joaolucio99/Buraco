@@ -5,13 +5,52 @@
     void on_card_trash_clicked(){       //dialog botao jogar carta pro lixo
         GtkWidget          *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "card_purchased" ));
-        deck[deck_amount_cards].active = 1;
-        deck[deck_amount_cards].active_on.trash = 1;
-            list_insert( trash, deck[deck_amount_cards] );
-            add_card_trash_view();
-        deck_amount_cards--;
-        player[active].discard_card = 1;
-            gtk_widget_hide( dialog );
+        generic_log_with_name( player[active].name, "Descartou a carta que pegou do baralho" );
+            if( deck_amount_cards == -1) {
+                if( deaths[0] == 0 && deaths[1] == 0 ){
+                    if( dead1_amount_cards != -1 ){
+                        dead1[dead1_amount_cards].active = 1;
+                        dead1[dead1_amount_cards].active_on.trash = 1;
+                            list_insert( trash, dead1[dead1_amount_cards] );
+                            add_card_trash_view();
+                        dead1_amount_cards--;
+                        player[active].discard_card = 1;
+                            gtk_widget_hide( dialog );
+                    } else if( dead1_amount_cards == -1 && dead2_amount_cards != -1  ){
+                        dead2[dead2_amount_cards].active = 1;
+                        dead2[dead2_amount_cards].active_on.trash = 1;
+                            list_insert( trash, dead2[dead2_amount_cards] );
+                            add_card_trash_view();
+                        dead2_amount_cards--;
+                        player[active].discard_card = 1;
+                            gtk_widget_hide( dialog );
+                    }
+                } else if( deaths[0] == 0 && deaths[1] == 1 ){
+                    dead1[dead1_amount_cards].active = 1;
+                    dead1[dead1_amount_cards].active_on.trash = 1;
+                        list_insert( trash, dead1[dead1_amount_cards] );
+                        add_card_trash_view();
+                    dead1_amount_cards--;
+                    player[active].discard_card = 1;
+                        gtk_widget_hide( dialog );
+                } else if( deaths[0] == 1 && deaths[1] == 0 ){
+                    dead2[dead2_amount_cards].active = 1;
+                    dead2[dead2_amount_cards].active_on.trash = 1;
+                        list_insert( trash, dead2[dead2_amount_cards] );
+                        add_card_trash_view();
+                    dead2_amount_cards--;
+                    player[active].discard_card = 1;
+                        gtk_widget_hide( dialog );
+                }
+            } else{
+                deck[deck_amount_cards].active = 1;
+                deck[deck_amount_cards].active_on.trash = 1;
+                    list_insert( trash, deck[deck_amount_cards] );
+                    add_card_trash_view();
+                deck_amount_cards--;
+                player[active].discard_card = 1;
+                    gtk_widget_hide( dialog );
+            }
     }
 
     void on_trash_back_clicked(){       //fechar lixo
@@ -64,6 +103,7 @@
         GtkWidget           *dialog;
         dialog = GTK_WIDGET( gtk_builder_get_object( builder, "trash" ));
         if( player[active].buy_card == 0 ){
+            generic_log_with_name( player[active].name, "Comprou todo o lixo" );
             int count_trash = list_count_size( trash , 0 ) ; 
             int verification = list_count_size( trash , 1 ) ;
                 if( verification == -1 ) set_dialog( "NÃO TEM CARTAS NO LIXO" );

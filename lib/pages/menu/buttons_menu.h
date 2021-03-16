@@ -6,4 +6,8 @@
 
     void on_button_init_clicked();
 
+    void on_button_rules_clicked();
+
+    void on_back_rules_clicked();
+
 #endif

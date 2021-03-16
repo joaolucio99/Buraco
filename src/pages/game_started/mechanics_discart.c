@@ -24,6 +24,7 @@
 
     void on_discart_card_clicked(){     //dialog botao discartar
         if( player[active].discard_card == 0 ){
+            generic_log_with_name( player[active].name, "Descartou uma carta da mão" );
             GtkComboBox        *combo_box;
             GtkGrid            *hand;
             GtkWidget          *dialog;

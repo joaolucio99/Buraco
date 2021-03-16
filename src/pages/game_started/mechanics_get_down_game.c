@@ -111,6 +111,7 @@
                     player[active].n_games++;
                     cards_on_table( cards_to_check, comb_amount_cards );
                     check_size_render();
+                    generic_log_with_name( player[active].name, "Desceu um jogo para a mesa" );
                     on_get_down_back_clicked();
                 }
                 if( controller == 1 ) set_dialog( "VOCÊ NÃO PODE DESCER,\nJOGO INVÁLIDO" );

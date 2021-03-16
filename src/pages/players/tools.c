@@ -4,7 +4,7 @@
     char name_player2[16];
     int p_ready[2] = {0,0};
 
-    void on_player1_input_name_changed( GtkEntry *input ){
+    void on_player1_input_name_changed( GtkEntry *input ){  //
         sprintf( name_player1, "%s", gtk_entry_get_text( input ));     //pegando as informações digitadas no input de nome
     }
 

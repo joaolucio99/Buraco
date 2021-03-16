@@ -74,6 +74,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_button_rules_clicked" swapped="no"/>
                     <style>
                       <class name="button_menu"/>
                     </style>
@@ -477,6 +478,61 @@
             <property name="can_focus">False</property>
             <property name="width">0</property>
             <property name="height">0</property>
+            <child>
+              <object class="GtkImage" id="img_background2">
+                <property name="width_request">100</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../assets/background_players.png</property>
+                <style>
+                  <class name="teste2"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="back_rules">
+                <property name="label" translatable="yes">VOLTAR PARA O MENU</property>
+                <property name="width_request">100</property>
+                <property name="height_request">45</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <style>
+                  <class name="button_win"/>
+                </style>
+              </object>
+              <packing>
+                <property name="x">600</property>
+                <property name="y">610</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="width_request">1014</property>
+                <property name="height_request">480</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkViewport">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="pixbuf">../assets/rules.png</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">180</property>
+                <property name="y">70</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="name">rules_page</property>
@@ -1027,6 +1083,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">15</property>
                         <property name="label" translatable="yes">2º</property>
                         <style>
                           <class name="placing_text"/>
@@ -1098,6 +1155,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_go_to_menu_clicked" swapped="no"/>
                     <style>
                       <class name="buy_card"/>
                     </style>
@@ -1115,6 +1173,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_exit_game_clicked" swapped="no"/>
                     <style>
                       <class name="trash_card"/>
                     </style>

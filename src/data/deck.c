@@ -115,43 +115,7 @@
     }
 
     void deal_cards(){
-            for( int i = 0; i < 14; i++){
-                deck[i].active = 1;
-                deck[i].active_on.hand = 1;
-                if( i == 0) list_insert( player[first_player[0]].hand, deck[0] );
-                else if ( i == 1 ) list_insert( player[first_player[0]].hand, deck[3] );
-                else if ( i == 2 ) list_insert( player[first_player[0]].hand, deck[2] );
-                else if ( i == 3 ) list_insert( player[first_player[0]].hand, deck[4] );
-                else if ( i == 4 ) list_insert( player[first_player[0]].hand, deck[6] );
-                else if ( i == 5 ) list_insert( player[first_player[0]].hand, deck[8] );
-                else if ( i == 6 ) list_insert( player[first_player[0]].hand, deck[10] );
-                else if ( i == 7 ) list_insert( player[first_player[0]].hand, deck[12] );
-                else if ( i == 8 ) list_insert( player[first_player[0]].hand, deck[14] );
-                else if ( i == 9 ) list_insert( player[first_player[0]].hand, deck[16] );
-                else if ( i == 10 ) list_insert( player[first_player[0]].hand, deck[18] );
-                else if ( i == 11 ) list_insert( player[first_player[0]].hand, deck[20] );
-                else if ( i == 12 ) list_insert( player[first_player[0]].hand, deck[22] );
-                else if ( i == 13 ) list_insert( player[first_player[0]].hand, deck[24] );
-            }
-            for( int i = 0; i < 14; i++){
-                deck[i].active = 1;
-                deck[i].active_on.hand = 1;
-                if( i == 0) list_insert( player[first_player[1]].hand, deck[52] );
-                else if ( i == 1 ) list_insert( player[first_player[1]].hand, deck[53] );
-                else if ( i == 2 ) list_insert( player[first_player[1]].hand, deck[54] );
-                else if ( i == 3 ) list_insert( player[first_player[1]].hand, deck[56] );
-                else if ( i == 4 ) list_insert( player[first_player[1]].hand, deck[58] );
-                else if ( i == 5 ) list_insert( player[first_player[1]].hand, deck[60] );
-                else if ( i == 6 ) list_insert( player[first_player[1]].hand, deck[62] );
-                else if ( i == 7 ) list_insert( player[first_player[1]].hand, deck[64] );
-                else if ( i == 8 ) list_insert( player[first_player[1]].hand, deck[66] );
-                else if ( i == 9 ) list_insert( player[first_player[1]].hand, deck[68] );
-                else if ( i == 10 ) list_insert( player[first_player[1]].hand, deck[70] );
-                else if ( i == 11 ) list_insert( player[first_player[1]].hand, deck[72] );
-                else if ( i == 12 ) list_insert( player[first_player[1]].hand, deck[74] );
-                else if ( i == 13 ) list_insert( player[first_player[1]].hand, deck[76] );
-            }
-            /*for( int i = 103; i > 92; i--){
+            for( int i = 103; i > 92; i--){
                 deck[i].active = 1;
                 deck[i].active_on.hand = 1;
                     list_insert( player[first_player[0]].hand, deck[i] );
@@ -160,7 +124,7 @@
                 deck[i].active = 1;
                 deck[i].active_on.hand = 1;
                     list_insert( player[first_player[1]].hand, deck[i] );
-            }*/
+            }
         int count = 10;
             for( int i = 81; i > 70 ; i-- ){
                 deck[i].active = 1;

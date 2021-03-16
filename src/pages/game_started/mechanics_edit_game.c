@@ -35,7 +35,7 @@
         } else set_dialog( "VOCÊ NÃO PODE EDITAR JOGOS,\nPOIS VOCÊ NÂO TEM NENHUM" );
     }
 
-    void on_edit_down_card_clicked(){
+    void on_edit_down_card_clicked(){       //quando jogador clica para editar o jogo
         GtkComboBox            *combo_box_games;
         GtkComboBox            *combo_box_position_choice;
         GtkComboBox            *combo_box_hcards;
@@ -59,6 +59,7 @@
             check_size_render();
             gtk_combo_box_text_remove_all( combo_box_text_games );
             gtk_combo_box_text_remove_all( combo_box_text_hcards );
+            generic_log_with_name( player[active].name, "Editou um jogo da mesa" );
             gtk_widget_hide( dialog );
     }
 
@@ -162,7 +163,7 @@
         }
     }
 
-    void check_render_game_all(){
+    void check_render_game_all(){       //atualizando visualmente as cartas na mesa
         GtkGrid         *player_game_grid;
         GtkWidget       *image;
         GdkPixbuf       *pixbuf;

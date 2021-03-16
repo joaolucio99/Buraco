@@ -34,7 +34,7 @@
                 char system_date[30];
                 char player_text[128];
                 char final_text[256];
-                    get_player_name_log( player_text , i);
+                    get_player_name_log( player_text, i );
                     get_date( &system_date );
                     strcpy( final_text, player_text );
                     strcat( final_text, system_date );
@@ -43,8 +43,8 @@
                     if( player_log == NULL ) printf( "\n\nNao conseguiu abrir o arquivo\n\n" );        //tratar erro se arquivo nao for aberto
                 int result = fputs( final_text, player_log );
                     if( result == EOF ) printf( "\n\nNao conseguiu realizar a gravação\n\n" );
+                fclose( player_log );
             }
-        fclose( player_log );
     }
 
     void set_first_player(){

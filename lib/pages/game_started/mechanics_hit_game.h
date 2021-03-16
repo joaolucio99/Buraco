@@ -13,6 +13,10 @@
 
    int check_joker_hit();
 
+   void on_exit_game_clicked();
+
+   void on_go_to_menu_clicked();
+
    void check_game_end();
 
    int check_canasta();

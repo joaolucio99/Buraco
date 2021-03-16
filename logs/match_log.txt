@@ -1,0 +1,24 @@
+16/3/2021 - 18:55:46 - PARTIDA INICIADA
+16/3/2021 - 18:55:46 - Turno 0 - Player Usuario Teste 1 
+16/3/2021 - 18:55:54 - Player Usuario Teste 1 Comprou uma carta 
+16/3/2021 - 18:55:58 - Player Usuario Teste 1 Comprou a carta que pegou do baralho 
+16/3/2021 - 18:56:1 - Player Usuario Teste 1 Descartou uma carta da mão 
+16/3/2021 - 18:56:2 - Player Usuario Teste 1 Passou a vez 
+16/3/2021 - 18:56:2 - Turno 1 - Player Usuario Teste 2 
+16/3/2021 - 18:56:20 - Player Usuario Teste 2 Desceu um jogo para a mesa 
+16/3/2021 - 18:56:28 - Player Usuario Teste 2 Comprou uma carta 
+16/3/2021 - 18:56:30 - Player Usuario Teste 2 Descartou a carta que pegou do baralho 
+16/3/2021 - 18:56:31 - Player Usuario Teste 2 Passou a vez 
+16/3/2021 - 18:56:31 - Turno 2 - Player Usuario Teste 1 
+16/3/2021 - 18:56:39 - Player Usuario Teste 1 Comprou uma carta 
+16/3/2021 - 18:56:44 - Player Usuario Teste 1 Comprou a carta que pegou do baralho 
+16/3/2021 - 18:56:54 - Player Usuario Teste 1 Descartou uma carta da mão 
+16/3/2021 - 18:56:56 - Player Usuario Teste 1 Passou a vez 
+16/3/2021 - 18:56:56 - Turno 3 - Player Usuario Teste 2 
+16/3/2021 - 18:56:57 - Player Usuario Teste 2 Comprou uma carta 
+16/3/2021 - 18:57:0 - Player Usuario Teste 2 Descartou a carta que pegou do baralho 
+16/3/2021 - 18:57:1 - Player Usuario Teste 2 Passou a vez 
+16/3/2021 - 18:57:1 - Turno 4 - Player Usuario Teste 1 
+16/3/2021 - 18:57:1 - Player Usuario Teste 1 Comprou uma carta 
+16/3/2021 - 18:57:4 - Player Usuario Teste 1 Comprou a carta que pegou do baralho 
+16/3/2021 - 18:57:36 - Player Usuario Teste 1 Descartou uma carta da mão 

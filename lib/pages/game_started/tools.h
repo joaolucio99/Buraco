@@ -7,6 +7,7 @@
 #include "mechanics_edit_game.h"
 #include "mechanics_get_down_game.h"
 #include "mechanics_hit_game.h"
+#include "logs.h"
 
     extern int active;
     extern int count_round;
